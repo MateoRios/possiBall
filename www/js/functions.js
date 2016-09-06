@@ -7,7 +7,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// Para acceder a la base de datos
+// Variable global para acceder a la base de datos
 var db = firebase.database();
 
 // Iniciar sesion con email y contrasenya
@@ -49,12 +49,39 @@ function newSes() {
     var errorMessage = error.message;
     // ...
   });
+}
 
+// Funcion para crear el usuario en la base de datos por primera vez
+function crear() {
+  var user = firebase.auth().currentUser;
+
+  // comprobamos que el usuario esta vacio para crear sus datos en la base de datos
+  db.ref('/usuarios/'+user.uid).once('value').then(function (snapshot) {
+    var nom = snapshot.val().nombre;
+
+    // si no esta el nombre asumimos que el usuario esta recien creado sin datos en la BD
+    if (nom===undefined) {
+      db.ref('usuarios/' + user.uid).set({
+        email: user.email
+      });
+    }
+  });
+}
+
+// Funcion para actualizar los datos del usuario
+function actualizar() {
+  var nombre = document.getElementById("nombre").value;
+  var apellidos = document.getElementById("apellidos").value;
   // Obtengo el usuario recien creado y creo su perfil en la base de datos
-  var user = firebase.auth().currentUser.uid;
-  db.ref('users/'+user).set({
-    username: usu,
-    email: email,
+  var user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    displayName: nombre,
+  }).then(function() {
+    // Update successful.
+    console.log('Todo correcto');
+  }, function(error) {
+    // An error happened.
   });
 }
 
@@ -66,6 +93,31 @@ function closeSes() {
   }, function(error) {
     // An error happened.
     console.log("Algun error ocurrio");
+  });
+}
+
+// Funcion para cargar los datos de los perfiles de los usuarios
+function cargaPerfil() {
+  var user = firebase.auth().currentUser;
+  if (user!=null) {
+    console.log("Si estas registrado");
+  } else {
+    console.log("No hay usuario");
+  }
+
+  // datos del usuario
+  var nombre, apellidos, edad, localidad, provincia, pais, email;
+  db.ref('/usuarios/'+user.uid).on('value', function (snapshot) {
+    console.log(snapshot.val().nombre);
+    nombre = snapshot.val().nombre;
+    apellidos = snapshot.val().apellidos;
+    edad = snapshot.val().edad;
+    localidad = snapshot.val().localidad;
+    provincia = snapshot.val().provincia;
+    pais = snapshot.val().pais;
+    email = snapshot.val().email;
+
+    document.getElementById("perfilContent").innerHTML = "<div><p>"+nombre+"</p></div>";
   });
 }
 
