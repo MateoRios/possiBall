@@ -1,0 +1,181 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Paleta de colores
+$darkPrimary: #689F38;
+$primaryColor: #8BC34A;
+$lightColor: #DCEDC8;
+$textIcons: #212121;
+$secondaryText: #757575;
+$divider: #BDBDBD;
+$accentColor: #8BC34A;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+// Reglas generales
+html{
+  height: 100%;
+}
+body{
+  color: #fff;
+  background-color: #fff;
+  height: 100%;
+}
+button{
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+a{
+  text-decoration: none;
+}
+h1{
+  left: 0 !important;
+}
+i{
+  font-size: 33px !important;
+  z-index: 999;
+  color: #fff;
+}
+#index{
+  text-align: center;
+  color: #fff;
+  #home{
+    width: 100%;
+    height: 100%;
+    padding: 40% 0;
+    a{
+      display: block;
+      margin: auto;
+      width: 60%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+// Formulario de registro
+#registro{
+  button{
+    display: block;
+    margin: auto;
+    background-color: $darkPrimary;
+  }
+}
+
+// Menu lateral
+#slide-out{
+  transition: all 0.5s ease;
+}
+
+// Barra superior
+.pane, .view{
+  position: initial;
+}
+.bar{
+  height: auto;
+  display: block;
+  padding-bottom: 0;
+}
+.tabs .indicator{
+  background-color: #fff !important;
+}
+.bar.bar-stable{
+  border: 0;
+  background-image: none;
+  background-color: $darkPrimary;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  display: block;
+  float: left;
+  z-index: 50;
+  position: relative;
+  .title{
+    color: #fff;
+  }
+  #cabeza{
+    i{
+      width: 10%;
+      display: block;
+      float: left;
+      position: relative;
+      left: -10px;
+      top: 4px;
+    }
+    h1{
+      width: 85%;
+      margin: 0;
+      display: block;
+      float: left;
+      text-align: left;
+      position: inherit;
+      font-weight: normal;
+    }
+  }
+  #subCabeza{
+    div{
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      ul{
+        background-color: $darkPrimary;
+        padding-top: 0;
+        background-image: none;
+        li{
+          button{
+            color: #fff;
+            background: none;
+            box-shadow: none;
+            padding: 0;
+            font-size: 15px;
+            border: 0;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+.has-header{
+  z-index: -1;
+  position: inherit;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+
+// Contenedores del contenido
+.slider{
+  height: 100%;
+}
+.view-container{
+  z-index: -5;
+  position: relative;
+  float: left;
+}
+ul.collection{
+  margin-top: 0;
+  border-left: 0;
+  border-right: 0;
+  color: $textIcons;
+  .collection-item.avatar{
+    min-height: 72px;
+  }
+}
