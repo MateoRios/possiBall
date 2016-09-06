@@ -9833,7 +9833,6 @@ h1 {
   left: 0 !important; }
 
 i {
-  font-size: 33px !important;
   z-index: 999;
   color: #fff; }
 
@@ -9882,15 +9881,21 @@ i {
   position: relative; }
   .bar.bar-stable .title {
     color: #fff; }
-  .bar.bar-stable #cabeza i {
+  .bar.bar-stable #cabeza #iconMenu {
     width: 10%;
     display: block;
     float: left;
     position: relative;
     left: -10px;
-    top: 4px; }
+    top: 4px;
+    font-size: 30px; }
+  .bar.bar-stable #cabeza #iconNoti {
+    float: right;
+    font-size: 30px;
+    margin-right: 3%;
+    padding-top: 3px; }
   .bar.bar-stable #cabeza h1 {
-    width: 85%;
+    width: 65%;
     margin: 0;
     display: block;
     float: left;
