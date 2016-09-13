@@ -38,6 +38,8 @@ body{
   color: #fff;
   background-color: #fff;
   height: 100%;
+  position: relative;
+  z-index: -60;
 }
 button{
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
@@ -135,7 +137,7 @@ i{
       padding-left: 66px;
       text-align: left;
       position: relative;
-      font-weight: normal;
+      font-weight: bold;
       padding-top: 3px;
     }
   }
@@ -158,6 +160,7 @@ i{
             border: 0;
             text-transform: uppercase;
             width: 100%;
+            font-weight: bold;
           }
         }
       }
@@ -171,6 +174,18 @@ i{
   float: left;
   width: 100%;
   height: 100%;
+}
+a.submenu{
+  float: right;
+  position: absolute;
+  right: 5px;
+}
+#dropdown1{
+  li{
+    a{
+      color: $textIcons;
+    }
+  }
 }
 
 // Contenedores del contenido
@@ -190,6 +205,17 @@ ul.collection{
   .collection-item.avatar{
     min-height: 72px;
   }
+}
+ul.collection .collection-item.avatar{
+  padding-left: 0;
+  margin-left: 72px;
+  img{
+    margin-left: -72px;
+  }
+}
+ul.collection .collection-item{
+  padding: 10px 0px;
+  margin: 0 20px;
 }
 
 // CSS para el perfil de los usuarios

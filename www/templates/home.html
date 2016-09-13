@@ -1,0 +1,68 @@
+<ion-view>
+  <!-- cabecera de la apicacion con las vistas y submenu -->
+  <ion-header-bar class="bar-stable">
+    <div id="cabeza">
+      <i id="iconMenu" class="material-icons" onclick="muestraMenu();">menu</i>
+      <h1 class="title">PossiBall</h1>
+      <i id="iconNoti" class="material-icons">notifications</i>
+      <a class='dropdown-button submenu' href='#' data-activates='dropdown1'><i id="iconMore" class="material-icons">more_vert</i></a>
+      <!-- Submenu desplegable -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#">one</a></li>
+        <li><a href="#">two</a></li>
+        <li><a href="#">three</a></li>
+      </ul>
+    </div>
+    <div id="subCabeza">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><button type="button" name="button" ng-click="eventos();">Inicio</button></li>
+          <li class="tab col s3"><button type="button" name="button" ng-click="partidos();">Partidos</button></li>
+          <li class="tab col s3"><button type="button" name="button" ng-click="busqueda();">Buscar</button></li>
+        </ul>
+      </div>
+    </div>
+  </ion-header-bar>
+  <!-- final de la cabecera -->
+
+  <!-- contenedores deslizantes de las vistas principales de la aplicacion -->
+  <ion-slide-box onclick="ocultaMenu();">
+    <ion-slide>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="img/fondo.jpg" alt="" class="circle">
+          <span class="title">Title</span>
+          <p>First Line</p>
+        </li>
+        <li class="collection-item avatar">
+          <img src="img/fondo.jpg" alt="" class="circle">
+          <span class="title">Title</span>
+          <p>First Line</p>
+        </li>
+        <li class="collection-item avatar">
+          <img src="img/fondo.jpg" alt="" class="circle">
+          <span class="title">Title</span>
+          <p>First Line</p>
+        </li>
+      </ul>
+    </ion-slide>
+    <ion-slide>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="img/fondo.jpg" alt="" class="circle">
+          <span class="title">Partido 1</span>
+          <p>Partido ya jugado</p>
+        </li>
+        <li class="collection-item avatar">
+          <img src="img/fondo.jpg" alt="" class="circle">
+          <span class="title">Partido 2</span>
+          <p>Partido pendiente de jugar</p>
+        </li>
+      </ul>
+    </ion-slide>
+    <ion-slide>
+
+    </ion-slide>
+  </ion-slide-box>
+  <!-- final de los contenedores -->
+</ion-view>
