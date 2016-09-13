@@ -9922,7 +9922,8 @@ i {
         font-size: 15px;
         border: 0;
         text-transform: uppercase;
-        width: 100%; }
+        width: 100%;
+        font-weight: bold; }
 
 .has-header {
   z-index: -1;
@@ -9936,6 +9937,9 @@ a.submenu {
   float: right;
   position: absolute;
   right: 5px; }
+
+#dropdown1 li a {
+  color: #212121; }
 
 .slider {
   height: 100%; }
