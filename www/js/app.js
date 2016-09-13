@@ -7,9 +7,17 @@ var app = angular.module('starter', ['ionic'])
 
 // configuracion de enrrutamiento de las vistas
 app.config(function($stateProvider, $urlRouterProvider){
-  $stateProvider.state('inicio',{
-    url:'/'
+  $stateProvider.state('home',{
+    url:'/home',
+    templateUrl:'templates/home.html'
   });
+
+  $stateProvider.state('perfil',{
+    url:'/perfil',
+    templateUrl:'templates/perfil.html'
+  });
+
+  $urlRouterProvider.otherwise('/home');
 });
 
 // controlador para cambiar de vistas con las pestañas del submenu horizontal
