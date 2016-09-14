@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view ng-controller="tabStyle">
   <!-- cabecera de la apicacion con las vistas y submenu -->
   <ion-header-bar class="bar-stable">
     <div id="cabeza">
@@ -16,9 +16,9 @@
     <div id="subCabeza">
       <div class="col s12">
         <ul class="tabs">
-          <li class="tab col s3"><button type="button" name="button" ng-click="eventos();">Inicio</button></li>
-          <li class="tab col s3"><button type="button" name="button" ng-click="partidos();">Partidos</button></li>
-          <li class="tab col s3"><button type="button" name="button" ng-click="busqueda();">Buscar</button></li>
+          <li class="tab col s3"><button type="button" name="tab" ng-click="eventos();activa();">Inicio</button></li>
+          <li class="tab col s3"><button type="button" name="tab" ng-click="partidos();activa();">Partidos</button></li>
+          <li class="tab col s3"><button type="button" name="tab" ng-click="busqueda();activa();">Buscar</button></li>
         </ul>
       </div>
     </div>

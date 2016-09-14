@@ -9883,31 +9883,33 @@ i {
   position: relative; }
   .bar.bar-stable .title {
     color: #fff; }
-  .bar.bar-stable #cabeza #iconMenu {
-    position: absolute;
-    left: 6px;
-    font-size: 24px;
-    padding: 12px; }
-  .bar.bar-stable #cabeza #iconNoti {
-    font-size: 24px;
-    position: absolute;
-    right: 54px;
-    padding: 12px; }
-  .bar.bar-stable #cabeza #iconMore {
-    font-size: 24px;
-    position: absolute;
-    right: 6px;
-    padding: 12px; }
-  .bar.bar-stable #cabeza h1 {
-    width: 100%;
-    margin: 0;
-    display: block;
-    float: left;
-    padding-left: 66px;
-    text-align: left;
-    position: relative;
-    font-weight: bold;
-    padding-top: 3px; }
+  .bar.bar-stable #cabeza {
+    min-height: 53px; }
+    .bar.bar-stable #cabeza #iconMenu {
+      position: absolute;
+      left: 6px;
+      font-size: 24px;
+      padding: 12px; }
+    .bar.bar-stable #cabeza #iconNoti {
+      font-size: 24px;
+      position: absolute;
+      right: 54px;
+      padding: 12px; }
+    .bar.bar-stable #cabeza #iconMore {
+      font-size: 24px;
+      position: absolute;
+      right: 6px;
+      padding: 12px; }
+    .bar.bar-stable #cabeza h1 {
+      width: 100%;
+      margin: 0;
+      display: block;
+      float: left;
+      padding-left: 66px;
+      text-align: left;
+      position: relative;
+      font-weight: bold;
+      padding-top: 3px; }
   .bar.bar-stable #subCabeza div {
     padding-bottom: 0;
     padding-left: 0;
@@ -9917,7 +9919,7 @@ i {
       padding-top: 0;
       background-image: none; }
       .bar.bar-stable #subCabeza div ul li button {
-        color: #fff;
+        color: #DCEDC8;
         background: none;
         box-shadow: none;
         padding: 0;

@@ -121,6 +121,18 @@ function cargaPerfil() {
   });
 }
 
+// Funcion para cambiar el estilo de las tab de navegacion
+function tabActiva(index) {
+  var tabs = document.getElementsByName("tab");
+  for (var i = 0; i < tabs.length; i++) {
+    if (index == i) {
+      tabs[i].style.color = '#fff';
+    }else{
+      tabs[i].style.color = '#DCEDC8';
+    }
+  }
+}
+
 // Funcion para mostrar el menu lateral
 var oculto = true;
 function muestraMenu() {

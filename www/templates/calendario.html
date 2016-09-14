@@ -1,0 +1,23 @@
+<ion-view id="calendario" ng-controller="ocultaMenuVista">
+  <!-- cabecera de la apicacion con las vistas y submenu -->
+  <ion-header-bar class="bar-stable">
+    <div id="cabeza">
+      <a nav-direction="forward" nav-transition="android" href="#"><i id="iconMenu" class="material-icons">arrow_back</i></a>
+      <h1 class="title">Calendario</h1>
+      <i id="iconNoti" class="material-icons">notifications</i>
+      <a class='dropdown-button submenu' href='#' data-beloworigin="true" data-activates='dropdown1'><i id="iconMore" class="material-icons">more_vert</i></a>
+      <!-- Submenu desplegable -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#">one</a></li>
+        <li><a href="#">two</a></li>
+        <li><a href="#">three</a></li>
+      </ul>
+    </div>
+  </ion-header-bar>
+  <!-- final de la cabecera -->
+
+  <ion-content onclick="ocultaMenu();">
+    <p>Holi</p>
+  </ion-content>
+
+</ion-view>

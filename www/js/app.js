@@ -19,6 +19,36 @@ app.config(function($stateProvider, $urlRouterProvider){
     templateUrl:'templates/perfil.html'
   });
 
+  // vista de los grupos
+  $stateProvider.state('grupos',{
+    url:'/grupos',
+    templateUrl:'templates/grupos.html'
+  });
+
+  // vista del calendario
+  $stateProvider.state('calendario',{
+    url:'/calendario',
+    templateUrl:'templates/calendario.html'
+  });
+
+  // vista de las listas de amigos
+  $stateProvider.state('listAmigos',{
+    url:'/listAmigos',
+    templateUrl:'templates/listAmigos.html'
+  });
+
+  // vista de la ayuda
+  $stateProvider.state('ayuda',{
+    url:'/ayuda',
+    templateUrl:'templates/ayuda.html'
+  });
+
+  // vista para anyadir nuevas pistas
+  $stateProvider.state('crearPista',{
+    url:'/crearPista',
+    templateUrl:'templates/crearPista.html'
+  });
+
   // vista de los ajustes
   $stateProvider.state('ajustes',{
     url:'/ajustes',
@@ -43,6 +73,14 @@ app.controller('principal', function ($scope,$state, $ionicSlideBoxDelegate) {
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
   };
+});
+
+// controlador para el estilo de las tabs de navegacion
+app.controller('tabStyle', function ($scope, $ionicSlideBoxDelegate) {
+  $scope.activa = function () {
+    var index = $ionicSlideBoxDelegate.currentIndex();
+    tabActiva(index);
+  }
 });
 
 // controlador para ocultar el menu lateral al cambiar de vista
