@@ -189,7 +189,7 @@ a.submenu{
 }
 
 // Contenedores del contenido
-.slider{
+div.slider{
   height: 100%;
 }
 .view-container{
@@ -201,6 +201,7 @@ ul.collection{
   margin-top: 0;
   border-left: 0;
   border-right: 0;
+  border: 0;
   color: $textIcons;
   .collection-item.avatar{
     min-height: 72px;
@@ -218,6 +219,13 @@ ul.collection .collection-item{
   margin: 0 20px;
 }
 
+// CSS para la vista de ajustes
+#ajustes{
+  .bar-stable{
+    min-height: 56px;
+  }
+}
+
 // CSS para el perfil de los usuarios
 #barraPerfil{
   background: none;
@@ -228,4 +236,8 @@ ul.collection .collection-item{
       display: none;
     }
   }
+}
+#perfilContenido{
+  height: 100%;
+  display: block;
 }
