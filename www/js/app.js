@@ -7,14 +7,22 @@ var app = angular.module('starter', ['ionic'])
 
 // configuracion de enrrutamiento de las vistas
 app.config(function($stateProvider, $urlRouterProvider){
+  // vista principal de la app
   $stateProvider.state('home',{
     url:'/home',
     templateUrl:'templates/home.html'
   });
 
+  // vista del perfil
   $stateProvider.state('perfil',{
     url:'/perfil',
     templateUrl:'templates/perfil.html'
+  });
+
+  // vista de los ajustes
+  $stateProvider.state('ajustes',{
+    url:'/ajustes',
+    templateUrl:'templates/ajustes.html'
   });
 
   $urlRouterProvider.otherwise('/home');
@@ -35,6 +43,13 @@ app.controller('principal', function ($scope,$state, $ionicSlideBoxDelegate) {
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
   };
+});
+
+// controlador para ocultar el menu lateral al cambiar de vista
+app.controller('ocultaMenuVista', function ($scope) {
+  $scope.$on("$ionicView.enter", function (event, data) {
+    ocultaMenu();
+  });
 });
 
 app.run(function($ionicPlatform) {

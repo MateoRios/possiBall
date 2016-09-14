@@ -140,6 +140,7 @@ function ocultaMenu() {
 $(document).ready(function(){
   $('ul.tabs').tabs();
 });
+$('.dropdown-button').dropdown('open');
 
 function cliclado() {
   console.log("lo estas cliclando");
