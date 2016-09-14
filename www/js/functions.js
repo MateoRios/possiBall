@@ -124,9 +124,17 @@ function cargaPerfil() {
 // Funcion para cambiar el estilo de las tab de navegacion
 function tabActiva(index) {
   var tabs = document.getElementsByName("tab");
+  var subTab = document.getElementById("subTab");
   for (var i = 0; i < tabs.length; i++) {
     if (index == i) {
       tabs[i].style.color = '#fff';
+      if (index == 0) {
+        subTab.style.left = '0'+'%';
+      } else if (index == 1) {
+        subTab.style.left = '33.33'+'%';
+      } else {
+        subTab.style.left = '66.66'+'%';
+      }
     }else{
       tabs[i].style.color = '#DCEDC8';
     }
@@ -149,10 +157,29 @@ function ocultaMenu() {
   oculto = true;
 }
 
-$(document).ready(function(){
-  $('ul.tabs').tabs();
-});
-$('.dropdown-button').dropdown('open');
+// Funcion para desplegar el submenu
+var drop = true;
+function dropMenu() {
+  var submenu = document.getElementById("dropdown1");
+  if (drop == true) {
+    submenu.style.display = 'block';
+    submenu.style.opacity = '1';
+    document.getElementById("bloque").style.display = "block";
+    drop = false;
+  }else if (drop == false) {
+    submenu.style.display = 'none';
+    submenu.style.opacity = '0';
+    document.getElementById("bloque").style.display = "none";
+    drop = true;
+  }
+}
+function ocultaSubMenu() {
+  var submenu = document.getElementById("dropdown1");
+  submenu.style.display = 'none';
+  submenu.style.opacity = '0';
+  document.getElementById("bloque").style.display = "none";
+  drop = true;
+}
 
 function cliclado() {
   console.log("lo estas cliclando");

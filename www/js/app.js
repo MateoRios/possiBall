@@ -81,6 +81,10 @@ app.controller('tabStyle', function ($scope, $ionicSlideBoxDelegate) {
     var index = $ionicSlideBoxDelegate.currentIndex();
     tabActiva(index);
   }
+  $scope.slideChanged = function () {
+    var index = $ionicSlideBoxDelegate.currentIndex();
+    tabActiva(index);
+  }
 });
 
 // controlador para ocultar el menu lateral al cambiar de vista
@@ -103,7 +107,7 @@ app.run(function($ionicPlatform) {
       cordova.plugins.Keyboard.disableScroll(true);
     }
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      StatusBar.styleHex('#689F38');
     }
   });
 });
