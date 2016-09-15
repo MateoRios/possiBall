@@ -165,6 +165,7 @@ i{
             text-transform: uppercase;
             width: 100%;
             font-weight: bold;
+            height: 100%;
           }
         }
         li:first-child{
@@ -215,6 +216,15 @@ a.submenu{
   height: calc(100% + 600px);
   top: 0;
 }
+a.btn-floating{
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  background-color: $primaryColor;
+  &:hover{
+    background-color: $primaryColor;
+  }
+}
 
 // Contenedores del contenido
 div.slider{
@@ -232,7 +242,18 @@ ul.collection{
   border: 0;
   color: $textIcons;
   .collection-item.avatar{
-    min-height: 72px;
+    min-height: 71px;
+    padding-top: 14px;
+    .title{
+      color: $textIcons;
+    }
+    p{
+      color: $secondaryText;
+    }
+    .circle{
+      width: 44px;
+      height: 44px;
+    }
   }
 }
 ul.collection .collection-item.avatar{

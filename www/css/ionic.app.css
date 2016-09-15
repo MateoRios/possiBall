@@ -9930,7 +9930,8 @@ i {
         border: 0;
         text-transform: uppercase;
         width: 100%;
-        font-weight: bold; }
+        font-weight: bold;
+        height: 100%; }
       .bar.bar-stable #subCabeza div ul li:first-child button {
         color: #fff; }
 
@@ -9970,6 +9971,14 @@ a.submenu {
   height: calc(100% + 600px);
   top: 0; }
 
+a.btn-floating {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  background-color: #8BC34A; }
+  a.btn-floating:hover {
+    background-color: #8BC34A; }
+
 div.slider {
   height: 100%; }
 
@@ -9985,7 +9994,15 @@ ul.collection {
   border: 0;
   color: #212121; }
   ul.collection .collection-item.avatar {
-    min-height: 72px; }
+    min-height: 71px;
+    padding-top: 14px; }
+    ul.collection .collection-item.avatar .title {
+      color: #212121; }
+    ul.collection .collection-item.avatar p {
+      color: #757575; }
+    ul.collection .collection-item.avatar .circle {
+      width: 44px;
+      height: 44px; }
 
 ul.collection .collection-item.avatar {
   padding-left: 0;

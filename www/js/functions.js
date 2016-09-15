@@ -21,6 +21,7 @@ function initSes(){
     var errorMessage = error.message;
     // ...
   });
+  estaRegistrado();
 }
 
 // Funcion para comprobar si ya ha iniciado sesion
@@ -30,7 +31,7 @@ function estaRegistrado(){
   if (user) {
     // User is signed in.
     console.log("Estas registrado");
-    window.location.href = '/homeApp.html';
+    window.location.href = 'homeApp.html';
   } else {
     // No user is signed in.
     console.log("No estas registrado");
@@ -141,7 +142,7 @@ function tabActiva(index) {
   }
 }
 
-// Funcion para mostrar el menu lateral
+// Funcion para mostrar el menu lateral y ocultarlo
 var oculto = true;
 function muestraMenu() {
   if (oculto == true) {
@@ -157,7 +158,7 @@ function ocultaMenu() {
   oculto = true;
 }
 
-// Funcion para desplegar el submenu
+// Funcion para desplegar el submenu y ocultarlo
 var drop = true;
 function dropMenu() {
   var submenu = document.getElementById("dropdown1");
