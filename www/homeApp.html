@@ -13,22 +13,8 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-
-    <!-- your app's js y firebase -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/functions.js"></script>
   </head>
-  <body ng-app="starter" ng-controller="principal" onload="crear();">
+  <body ng-app="starter" ng-controller="principal">
     <ion-pane>
 
       <!-- menu principal lateral oculto -->
@@ -49,7 +35,7 @@
         <li><div class="divider"></div></li>
         <li><a class="waves-effect" ui-sref="ajustes" nav-transition="android"><i class="material-icons">settings</i>Ajustes</a></li>
         <li><a class="waves-effect" ui-sref="ayuda" nav-transition="android"><i class="material-icons">help_outline</i>Ayuda</a></li>
-        <li><a class="waves-effect"><i class="material-icons">exit_to_app</i>Salir</a></li>
+        <li><a class="waves-effect" id="salir"><i class="material-icons">exit_to_app</i>Salir</a></li>
       </ul>
       <!-- fin del menu lateral -->
 
@@ -63,5 +49,30 @@
       <!-- final del panel de las vistas de navegacion -->
 
     </ion-pane>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js y firebase -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCrrFigLP1_HqX1vXIPpEc_ddhzwr5Ja5c",
+        authDomain: "proyectopersonal-ecbe3.firebaseapp.com",
+        databaseURL: "https://proyectopersonal-ecbe3.firebaseio.com",
+        storageBucket: "proyectopersonal-ecbe3.appspot.com",
+        messagingSenderId: "77508517902"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/functions.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
   </body>
 </html>

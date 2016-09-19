@@ -1,100 +1,75 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCrrFigLP1_HqX1vXIPpEc_ddhzwr5Ja5c",
-  authDomain: "proyectopersonal-ecbe3.firebaseapp.com",
-  databaseURL: "https://proyectopersonal-ecbe3.firebaseio.com",
-  storageBucket: "proyectopersonal-ecbe3.appspot.com",
-};
-firebase.initializeApp(config);
+'use strict';
 
-// Variable global para acceder a la base de datos
-var db = firebase.database();
+// Iniciamos la logica de la aplicacion con el objeto PossiBall
+function PossiBall() {
+  this.checkSetup();    // Comprobamos que tenemos acceso a Firebase
 
-// Iniciar sesion con email y contrasenya
-function initSes(){
-  var email = document.getElementById('email').value;
-  var pass = document.getElementById('password').value;
+  // elementos de la app con las que interactuar
+  this.signGoogle = document.getElementById("sesGoogle");
+  this.salir = document.getElementById("salir");
 
-  firebase.auth().signInWithEmailAndPassword(email, pass).catch(function(error) {
+  // eventos que desencadenan los elementos anteriores
+  if (this.signGoogle != null) { this.signGoogle.addEventListener('click', this.signInWithGoogle.bind(this)); }
+  if (this.salir != null) { this.salir.addEventListener('click', this.salirApp.bind(this)); }
+
+  // contructor de las funciones de Firebase
+  this.initFirebase();
+}
+
+// Agregamos la funcion initFirebase para iniciar todas las funcionalidades de Firebase
+PossiBall.prototype.initFirebase = function (){
+  this.auth = firebase.auth();            // Para acceder a los funciones del usuario
+  this.database = firebase.database();    // Para acceder a las funciones de la base de datos
+  this.storage = firebase.storage();      // Para acceder a las funciones del almacenamiento de los archivos multimedia
+}
+
+// Iniciar sesion con cuenta de Google
+PossiBall.prototype.signInWithGoogle = function () {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  this.auth.signInWithPopup(provider).then(function (result) {
+    // Si existe el usuario con cuenta en google entra en la app
+    if (!result.user.isAnonymous) {
+      window.location.href = '/homeApp.html';
+
+    // sino existe se le notifica que no dispone de cuenta en google
+    } else {
+      console.log("Que no tienes cuenta mono.");
+    }
+  }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    // ...
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
   });
-  estaRegistrado();
 }
 
-// Funcion para comprobar si ya ha iniciado sesion
-function estaRegistrado(){
-  var user = firebase.auth().currentUser;
+// Funcion para salir de la aplicacion y se manda al index.html
+PossiBall.prototype.salirApp = function () {
+  this.auth.signOut().then(function () {
+    window.location.href = '../index.html';
+  }).catch(function (error) {
+    console.log(error);
+  });
+};
 
+// Funcion para comprobar si ya ha iniciado sesion
+PossiBall.prototype.estaRegistrado = function () {
   if (user) {
-    // User is signed in.
-    console.log("Estas registrado");
-    window.location.href = 'homeApp.html';
-  } else {
-    // No user is signed in.
-    console.log("No estas registrado");
+    console.log("hola");
   }
 }
 
 // Crear una nueva cuenta para un usuario
 function newSes() {
-  var email = document.getElementById('email').value;
-  var pass = document.getElementById('password').value;
-  var usu = document.getElementById('usu').value;
 
-  firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
-  });
-}
-
-// Funcion para crear el usuario en la base de datos por primera vez
-function crear() {
-  var user = firebase.auth().currentUser;
-
-  // comprobamos que el usuario esta vacio para crear sus datos en la base de datos
-  db.ref('/usuarios/'+user.uid).once('value').then(function (snapshot) {
-    var nom = snapshot.val().nombre;
-
-    // si no esta el nombre asumimos que el usuario esta recien creado sin datos en la BD
-    if (nom===undefined) {
-      db.ref('usuarios/' + user.uid).set({
-        email: user.email
-      });
-    }
-  });
 }
 
 // Funcion para actualizar los datos del usuario
 function actualizar() {
-  var nombre = document.getElementById("nombre").value;
-  var apellidos = document.getElementById("apellidos").value;
-  // Obtengo el usuario recien creado y creo su perfil en la base de datos
-  var user = firebase.auth().currentUser;
 
-  user.updateProfile({
-    displayName: nombre,
-  }).then(function() {
-    // Update successful.
-    console.log('Todo correcto');
-  }, function(error) {
-    // An error happened.
-  });
-}
-
-// Cerrar la sesion actual del usuario
-function closeSes() {
-  firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-    console.log("Cerrada con existo");
-  }, function(error) {
-    // An error happened.
-    console.log("Algun error ocurrio");
-  });
 }
 
 // Funcion para cargar los datos de los perfiles de los usuarios
@@ -185,3 +160,26 @@ function ocultaSubMenu() {
 function cliclado() {
   console.log("lo estas cliclando");
 }
+
+// Para comprobar que la app esta conectada a todas las funcionalidades de Firebase
+PossiBall.prototype.checkSetup = function() {
+  if (!window.firebase || !(firebase.app instanceof Function) || !window.config) {
+    window.alert('You have not configured and imported the Firebase SDK. ' +
+        'Make sure you go through the codelab setup instructions.');
+  } else if (config.storageBucket === '') {
+    window.alert('Your Firebase Storage bucket has not been enabled. Sorry about that. This is ' +
+        'actually a Firebase bug that occurs rarely. ' +
+        'Please go and re-generate the Firebase initialisation snippet (step 4 of the codelab) ' +
+        'and make sure the storageBucket attribute is not empty. ' +
+        'You may also need to visit the Storage tab and paste the name of your bucket which is ' +
+        'displayed there.');
+  }else {
+    console.log("Si conecta con Firebase");
+  }
+};
+
+// Al cargar la pagina se crea el objeto para acceder a todas las funciones de la app
+window.onload = function() {
+  console.log("Cargada");
+  window.possiBall = new PossiBall();
+};

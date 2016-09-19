@@ -13,6 +13,17 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
+  </head>
+  <body ng-app="starter">
+    <ion-pane>
+      <ion-content id="index">
+        <div id="home">
+          <h1 class="title">PossiBall</h1>
+          <a class="waves-effect waves-light btn" href="homeApp.html">Home App</a>
+          <button class="waves-effect waves-light btn" id="sesGoogle" type="button">Iniciar Sesion con Google</button>
+        </div>
+      </ion-content>
+    </ion-pane>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -22,22 +33,21 @@
 
     <!-- your app's js y firebase -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-    <script src="js/app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCrrFigLP1_HqX1vXIPpEc_ddhzwr5Ja5c",
+        authDomain: "proyectopersonal-ecbe3.firebaseapp.com",
+        databaseURL: "https://proyectopersonal-ecbe3.firebaseio.com",
+        storageBucket: "proyectopersonal-ecbe3.appspot.com",
+        messagingSenderId: "77508517902"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="js/functions.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
-  </head>
-  <body ng-app="starter" onload="estaRegistrado();">
-    <ion-pane>
-      <ion-content id="index">
-        <div id="home">
-          <h1 class="title">PossiBall</h1>
-          <a class="waves-effect waves-light btn" href="homeApp.html">Home App</a>
-          <a class="waves-effect waves-light btn" href="login.html">Iniciar Sesión</a>
-          <a class="waves-effect waves-light btn" href="newSes.html">Crear Cuenta</a>
-        </div>
-      </ion-content>
-    </ion-pane>
   </body>
 </html>
