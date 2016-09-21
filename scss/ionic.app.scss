@@ -54,6 +54,14 @@ i{
   z-index: 999;
   color: #fff;
 }
+div#toast-container{
+  min-width: 90%;
+  top: 5% !important;
+  left: 5%;
+  div.toast{
+    background-color: $darkPrimary !important
+  }
+}
 #index{
   text-align: center;
   color: #fff;
@@ -82,14 +90,8 @@ i{
       margin-bottom: 10px;
     }
   }
-}
-
-// Formulario de registro
-#registro{
-  button{
-    display: block;
-    margin: auto;
-    background-color: $darkPrimary;
+  #crearUsu{
+    width: 100%;
   }
 }
 

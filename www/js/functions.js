@@ -7,10 +7,12 @@ function PossiBall() {
   // elementos de la app con las que interactuar
   this.signGoogle = document.getElementById("sesGoogle");
   this.salir = document.getElementById("salir");
+  this.login = document.getElementById("crearUsu");
 
   // eventos que desencadenan los elementos anteriores
   if (this.signGoogle != null) { this.signGoogle.addEventListener('click', this.signInWithGoogle.bind(this)); }
   if (this.salir != null) { this.salir.addEventListener('click', this.salirApp.bind(this)); }
+  if (this.login != null) { this.login.addEventListener('click', this.crearUsu.bind(this)); }
 
   // contructor de las funciones de Firebase
   this.initFirebase();
@@ -63,9 +65,23 @@ PossiBall.prototype.estaRegistrado = function () {
 }
 
 // Crear una nueva cuenta para un usuario
-function newSes() {
+PossiBall.prototype.crearUsu = function () {
 
-}
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  // usuario sin sesion activada
+  if (!this.auth.currentUser) {
+    var aux = true;
+    // usuario no registrado
+    this.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      aux = false;
+    });
+
+    console.log(aux);
+  }
+};
 
 // Funcion para actualizar los datos del usuario
 function actualizar() {

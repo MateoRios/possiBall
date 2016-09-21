@@ -94,15 +94,6 @@ app.controller('ocultaMenuVista', function ($scope) {
   });
 });
 
-// controlador para validar el formulario de crear usuario
-app.controller('validar', ['$scope', function ($scope) {
-  $scope.email = "";
-  $scope.pass = "";
-  $scope.submit = function () {
-
-  };
-}]);
-
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {

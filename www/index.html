@@ -20,20 +20,20 @@
         <div id="home">
           <h1 class="title">PossiBall</h1>
           <div class="row">
-            <form name="form" class="col s12" ng-controller="validar">
+            <form name="form" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" ng-model="pass" type="password" class="validate" required>
+                  <input id="password" type="password" class="validate" required>
                   <label for="password">Password</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" name="email" ng-model="email" type="email" class="validate" required>
+                  <input id="email" type="email" class="validate" required>
                   <label for="email">Email</label>
                 </div>
               </div>
-              <input type="submit" ng-click="submit()" class="waves-effect waves-light btn" name="name" value="Enviar">
+              <input type="submit" class="waves-effect waves-light btn" id="crearUsu" value="Enviar">
             </form>
           </div>
           <a class="waves-effect waves-light btn" href="homeApp.html">Home App</a>
