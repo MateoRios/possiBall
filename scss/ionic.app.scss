@@ -36,7 +36,7 @@ html{
 }
 body{
   color: #fff;
-  background-color: #fff;
+  background-color: #F1F8E9;
   height: 100%;
   position: relative;
   z-index: -60;
@@ -65,15 +65,32 @@ div#toast-container{
 #index{
   text-align: center;
   color: #fff;
+  background-color: $accentColor;
   #home{
     width: 100%;
     height: 100%;
     padding-top: 8%;
+    h1{
+      color: #fff;
+    }
     form{
       text-align: left;
-      margin: 0 10%;
-      border-bottom: 1px solid $divider;
+      margin: 0 8%;
+      border-bottom: 1px solid #fff;
       margin-bottom: 2%;
+      input{
+        border-color: #fff;
+        color: #fff;
+      }
+      label{
+        color: #fff;
+      }
+      button{
+        width: 100%;
+        margin-bottom: 15px;
+        background-color: $darkPrimary;
+        height: 50px;
+      }
       i{
         width: 90%;
         margin: auto;
@@ -252,14 +269,18 @@ div.slider{
   float: left;
 }
 ul.collection{
-  margin-top: 0;
+  margin-top: 6px;
   border-left: 0;
   border-right: 0;
   border: 0;
   color: $textIcons;
+  height: 100%;
   .collection-item.avatar{
     min-height: 71px;
     padding-top: 14px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    margin-bottom: 6px;
+    width: 100%;
     .title{
       color: $textIcons;
     }
@@ -271,17 +292,6 @@ ul.collection{
       height: 44px;
     }
   }
-}
-ul.collection .collection-item.avatar{
-  padding-left: 0;
-  margin-left: 72px;
-  img{
-    margin-left: -72px;
-  }
-}
-ul.collection .collection-item{
-  padding: 10px 0px;
-  margin: 0 20px;
 }
 
 // CSS para la vista de ajustes

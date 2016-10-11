@@ -9820,7 +9820,7 @@ html {
 
 body {
   color: #fff;
-  background-color: #fff;
+  background-color: #F1F8E9;
   height: 100%;
   position: relative;
   z-index: -60; }
@@ -9847,16 +9847,29 @@ div#toast-container {
 
 #index {
   text-align: center;
-  color: #fff; }
+  color: #fff;
+  background-color: #8BC34A; }
   #index #home {
     width: 100%;
     height: 100%;
     padding-top: 8%; }
+    #index #home h1 {
+      color: #fff; }
     #index #home form {
       text-align: left;
-      margin: 0 10%;
-      border-bottom: 1px solid #BDBDBD;
+      margin: 0 8%;
+      border-bottom: 1px solid #fff;
       margin-bottom: 2%; }
+      #index #home form input {
+        border-color: #fff;
+        color: #fff; }
+      #index #home form label {
+        color: #fff; }
+      #index #home form button {
+        width: 100%;
+        margin-bottom: 15px;
+        background-color: #689F38;
+        height: 50px; }
       #index #home form i {
         width: 90%;
         margin: auto;
@@ -10003,14 +10016,18 @@ div.slider {
   float: left; }
 
 ul.collection {
-  margin-top: 0;
+  margin-top: 6px;
   border-left: 0;
   border-right: 0;
   border: 0;
-  color: #212121; }
+  color: #212121;
+  height: 100%; }
   ul.collection .collection-item.avatar {
     min-height: 71px;
-    padding-top: 14px; }
+    padding-top: 14px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    margin-bottom: 6px;
+    width: 100%; }
     ul.collection .collection-item.avatar .title {
       color: #212121; }
     ul.collection .collection-item.avatar p {
@@ -10018,16 +10035,6 @@ ul.collection {
     ul.collection .collection-item.avatar .circle {
       width: 44px;
       height: 44px; }
-
-ul.collection .collection-item.avatar {
-  padding-left: 0;
-  margin-left: 72px; }
-  ul.collection .collection-item.avatar img {
-    margin-left: -72px; }
-
-ul.collection .collection-item {
-  padding: 10px 0px;
-  margin: 0 20px; }
 
 #ajustes .bar-stable {
   min-height: 56px; }
