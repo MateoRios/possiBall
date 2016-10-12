@@ -33,13 +33,14 @@ $accentColor: #8BC34A;
 // Reglas generales
 html{
   height: 100%;
+  overflow-y: auto;
 }
 body{
   color: #fff;
-  background-color: #F1F8E9;
-  height: 100%;
-  position: relative;
+  background-color: #fbfdf8;
+  height: auto;
   z-index: -60;
+  overflow-y: auto;
 }
 button{
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
@@ -49,6 +50,12 @@ a{
 }
 h1{
   left: 0 !important;
+}
+#btnPrincipal{
+  position: fixed;
+  i{
+    font-size: 24px;
+  }
 }
 i{
   z-index: 999;
@@ -115,6 +122,9 @@ div#toast-container{
 // Menu lateral
 #slide-out{
   transition: all 0.5s ease;
+  img.background{
+    width: 100%;
+  }
 }
 
 // Barra superior
@@ -149,6 +159,13 @@ div#toast-container{
       position: absolute;
       left: 6px;
       font-size: 24px;
+      padding: 12px;
+      border-radius: 50%;
+    }
+    #iconLupa{
+      font-size: 24px;
+      position: absolute;
+      right: 102px;
       padding: 12px;
       border-radius: 50%;
     }
@@ -265,8 +282,8 @@ div.slider{
 }
 .view-container{
   z-index: -5;
-  position: relative;
   float: left;
+  height: auto;
 }
 ul.collection{
   margin-top: 6px;
@@ -278,7 +295,7 @@ ul.collection{
   .collection-item.avatar{
     min-height: 71px;
     padding-top: 14px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     margin-bottom: 6px;
     width: 100%;
     .title{
@@ -290,6 +307,60 @@ ul.collection{
     .circle{
       width: 44px;
       height: 44px;
+    }
+  }
+  .collection-item{
+    border: 0;
+  }
+}
+div.cardPartido{
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+  div.card{
+    margin: 4px 0;
+  }
+  div.s12{
+    padding: 0 0.5em;
+    div.card-image{
+      overflow: visible;
+      a{
+        bottom: -18px;
+        width: 40px;
+        height: 40px;
+        i{
+          line-height: 40px;
+          font-size: 24px;
+        }
+      }
+    }
+    div.card-content{
+      padding: 15px;
+      padding-top: 5px;
+      color: $secondaryText;
+      span{
+        font-size: 18px;
+        color: $textIcons;
+        font-weight: normal;
+      }
+      p:nth-child(2){
+        margin-bottom: 6px;
+      }
+      i{
+        color: $secondaryText;
+      }
+    }
+    div.modalidad{
+      p{
+        margin-bottom: 0 !important;
+        padding-top: 3px;
+      }
+    }
+    div.card-action{
+      border-top: 0;
+      a{
+        color: $accentColor !important;
+      }
     }
   }
 }

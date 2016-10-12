@@ -128,7 +128,7 @@ function tabActiva(index) {
         subTab.style.left = '66.66'+'%';
       }
     }else{
-      tabs[i].style.color = '#DCEDC8';
+      tabs[i].style.color = '#F1F8E9';
     }
   }
 }

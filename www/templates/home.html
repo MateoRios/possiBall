@@ -4,6 +4,7 @@
     <div id="cabeza">
       <i id="iconMenu" class="waves-effect waves-light material-icons" onclick="muestraMenu();">menu</i>
       <h1 class="title">PossiBall</h1>
+      <i id="iconLupa" class="waves-effect waves-light material-icons">search</i>
       <i id="iconNoti" class="waves-effect waves-light material-icons">notifications</i>
       <i id="iconMore" class="waves-effect waves-light material-icons" onclick="dropMenu();">more_vert</i>
       <!-- Submenu desplegable -->
@@ -38,20 +39,46 @@
         </li>
       </ul>
     </ion-slide>
+
     <ion-slide>
-      <ul class="collection">
-        <li class="collection-item avatar waves-effect waves-light">
-          <img src="img/fondo.jpg" alt="" class="circle">
-          <span class="title">Partido 1</span>
-          <p>Partido ya jugado</p>
-        </li>
-        <li class="collection-item avatar waves-effect waves-light">
-          <img src="img/fondo.jpg" alt="" class="circle">
-          <span class="title">Partido 2</span>
-          <p>Partido pendiente de jugar</p>
-        </li>
-      </ul>
+      <div class="row cardPartido">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image waves-effect waves-light">
+              <img src="img/santiago.jpg">
+              <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
+            </div>
+            <div class="card-content">
+              <span class="card-title">Santiago Bernabeu</span>
+              <div><i class="material-icons left">location_on</i><p>Estadio Santiago Bernabéu, Avenida de Concha Espina, Madrid</p></div>
+              <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
+            </div>
+            <div class="card-action">
+              <a href="#">ver en mapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row cardPartido">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image waves-effect waves-light">
+              <img src="img/campnou.jpeg">
+              <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
+            </div>
+            <div class="card-content">
+              <span class="card-title">Santiago Bernabeu</span>
+              <div><i class="material-icons left">location_on</i><p>Camp Nou, Calle Aristides Maillol, Barcelona</p></div>
+              <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
+            </div>
+            <div class="card-action">
+              <a href="#">ver en mapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </ion-slide>
+
     <ion-slide>
 
     </ion-slide>

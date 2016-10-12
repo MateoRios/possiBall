@@ -9816,14 +9816,15 @@ a.button {
   transition-duration: 0s; }
 
 html {
-  height: 100%; }
+  height: 100%;
+  overflow-y: auto; }
 
 body {
   color: #fff;
-  background-color: #F1F8E9;
-  height: 100%;
-  position: relative;
-  z-index: -60; }
+  background-color: #fbfdf8;
+  height: auto;
+  z-index: -60;
+  overflow-y: auto; }
 
 button {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
@@ -9833,6 +9834,11 @@ a {
 
 h1 {
   left: 0 !important; }
+
+#btnPrincipal {
+  position: fixed; }
+  #btnPrincipal i {
+    font-size: 24px; }
 
 i {
   z-index: 999;
@@ -9886,6 +9892,8 @@ div#toast-container {
 
 #slide-out {
   transition: all 0.5s ease; }
+  #slide-out img.background {
+    width: 100%; }
 
 .pane, .view {
   position: initial; }
@@ -9917,6 +9925,12 @@ div#toast-container {
       position: absolute;
       left: 6px;
       font-size: 24px;
+      padding: 12px;
+      border-radius: 50%; }
+    .bar.bar-stable #cabeza #iconLupa {
+      font-size: 24px;
+      position: absolute;
+      right: 102px;
       padding: 12px;
       border-radius: 50%; }
     .bar.bar-stable #cabeza #iconNoti {
@@ -10012,8 +10026,8 @@ div.slider {
 
 .view-container {
   z-index: -5;
-  position: relative;
-  float: left; }
+  float: left;
+  height: auto; }
 
 ul.collection {
   margin-top: 6px;
@@ -10025,7 +10039,7 @@ ul.collection {
   ul.collection .collection-item.avatar {
     min-height: 71px;
     padding-top: 14px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     margin-bottom: 6px;
     width: 100%; }
     ul.collection .collection-item.avatar .title {
@@ -10035,6 +10049,45 @@ ul.collection {
     ul.collection .collection-item.avatar .circle {
       width: 44px;
       height: 44px; }
+  ul.collection .collection-item {
+    border: 0; }
+
+div.cardPartido {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0; }
+  div.cardPartido div.card {
+    margin: 4px 0; }
+  div.cardPartido div.s12 {
+    padding: 0 0.5em; }
+    div.cardPartido div.s12 div.card-image {
+      overflow: visible; }
+      div.cardPartido div.s12 div.card-image a {
+        bottom: -18px;
+        width: 40px;
+        height: 40px; }
+        div.cardPartido div.s12 div.card-image a i {
+          line-height: 40px;
+          font-size: 24px; }
+    div.cardPartido div.s12 div.card-content {
+      padding: 15px;
+      padding-top: 5px;
+      color: #757575; }
+      div.cardPartido div.s12 div.card-content span {
+        font-size: 18px;
+        color: #212121;
+        font-weight: normal; }
+      div.cardPartido div.s12 div.card-content p:nth-child(2) {
+        margin-bottom: 6px; }
+      div.cardPartido div.s12 div.card-content i {
+        color: #757575; }
+    div.cardPartido div.s12 div.modalidad p {
+      margin-bottom: 0 !important;
+      padding-top: 3px; }
+    div.cardPartido div.s12 div.card-action {
+      border-top: 0; }
+      div.cardPartido div.s12 div.card-action a {
+        color: #8BC34A !important; }
 
 #ajustes .bar-stable {
   min-height: 56px; }
