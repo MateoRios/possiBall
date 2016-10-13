@@ -84,6 +84,7 @@ app.controller('tabStyle', function ($scope, $ionicSlideBoxDelegate) {
   $scope.slideChanged = function () {
     var index = $ionicSlideBoxDelegate.currentIndex();
     tabActiva(index);
+    changeIcon(index);
   }
 });
 

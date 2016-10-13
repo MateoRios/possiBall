@@ -83,6 +83,8 @@ PossiBall.prototype.crearUsu = function () {
   }
 };
 
+var cortina = document.getElementsByClassName("cortina");
+
 // Funcion para actualizar los datos del usuario
 function actualizar() {
 
@@ -113,6 +115,39 @@ function cargaPerfil() {
   });
 }
 
+// Funcion para cambiar los icones entre las vistas
+function changeIcon(index) {
+  var noti = document.getElementById("iconNoti");
+
+  if (index == 0) {
+    noti.innerHTML = 'notifications';
+  }else if (index == 1) {
+    noti.innerHTML = 'filter_list';
+  }
+}
+
+// Funcion para abrir el menu de los filtros
+var ocultoFilter = false;
+function menuFilter() {
+  var noti = document.getElementById("iconNoti");
+  var menu = document.getElementById("menuFiltro");
+  var aux = noti.innerHTML.split("<");
+
+  if (aux[0] == 'notifications') {
+    console.log('menu notificaciones');
+  }else if (aux[0] == 'filter_list') {
+    if (ocultoFilter == false) {
+      menu.style.transform = "translateX(0%)";
+      ocultoFilter = true;
+      cortina[1].style.visibility = 'visible';
+    }else if (ocultoFilter == true) {
+      menu.style.transform = "translateX(+105%)";
+      ocultoFilter = false;
+      cortina[1].style.visibility = 'hidden';
+    }
+  }
+}
+
 // Funcion para cambiar el estilo de las tab de navegacion
 function tabActiva(index) {
   var tabs = document.getElementsByName("tab");
@@ -139,9 +174,11 @@ function muestraMenu() {
   if (oculto == true) {
     document.getElementById('slide-out').style.transform = "translateX(0%)";
     oculto = false;
+    cortina[0].style.visibility = 'visible';
   }else if (oculto == false) {
     document.getElementById('slide-out').style.transform = "translateX(-105%)";
     oculto = true;
+    cortina[0].style.visibility = 'hidden';
   }
 }
 function ocultaMenu() {

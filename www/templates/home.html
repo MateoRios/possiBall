@@ -5,13 +5,11 @@
       <i id="iconMenu" class="waves-effect waves-light material-icons" onclick="muestraMenu();">menu</i>
       <h1 class="title">PossiBall</h1>
       <i id="iconLupa" class="waves-effect waves-light material-icons">search</i>
-      <i id="iconNoti" class="waves-effect waves-light material-icons">notifications</i>
+      <i id="iconNoti" class="waves-effect waves-light material-icons" onclick="menuFilter();">notifications</i>
       <i id="iconMore" class="waves-effect waves-light material-icons" onclick="dropMenu();">more_vert</i>
       <!-- Submenu desplegable -->
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#">one</a></li>
-        <li><a href="#">two</a></li>
-        <li><a href="#">three</a></li>
+        <li><a class="waves-effect waves-light" href="#">Ajustes</a></li>
       </ul>
       <div id="bloque" onclick="ocultaSubMenu();"></div>
     </div>
@@ -29,7 +27,7 @@
   <!-- final de la cabecera -->
 
   <!-- contenedores deslizantes de las vistas principales de la aplicacion -->
-  <ion-slide-box onclick="ocultaMenu();" active-slide="currentIndex" on-slide-changed="slideChanged()">
+  <ion-slide-box active-slide="currentIndex" on-slide-changed="slideChanged()">
     <ion-slide>
       <ul class="collection">
         <li class="collection-item avatar waves-effect waves-light">
@@ -44,6 +42,14 @@
       <div class="row cardPartido">
         <div class="col s12 m7">
           <div class="card">
+            <div class="optionalHeader waves-effect waves-light avatar">
+              <img src="img/fondo.jpg" alt="" class="circle">
+              <span>
+                Antonio Mateo
+                <p><i class="material-icons left">access_time</i>10m</p>
+              </span>
+              <span class="cantJug">3/11<i class="material-icons right">person</i></span>
+            </div>
             <div class="card-image waves-effect waves-light">
               <img src="img/santiago.jpg">
               <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
@@ -54,7 +60,7 @@
               <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
             </div>
             <div class="card-action">
-              <a href="#">ver en mapa</a>
+              <a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a>
             </div>
           </div>
         </div>
@@ -62,17 +68,51 @@
       <div class="row cardPartido">
         <div class="col s12 m7">
           <div class="card">
+            <div class="optionalHeader waves-effect waves-light avatar">
+              <img src="img/fondo.jpg" alt="" class="circle">
+              <span>
+                Antonio Mateo
+                <p><i class="material-icons left">access_time</i>10m</p>
+              </span>
+              <span class="cantJug">3/11<i class="material-icons right">person</i></span>
+            </div>
             <div class="card-image waves-effect waves-light">
               <img src="img/campnou.jpeg">
               <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
             </div>
             <div class="card-content">
-              <span class="card-title">Santiago Bernabeu</span>
+              <span class="card-title">Camp Nou</span>
               <div><i class="material-icons left">location_on</i><p>Camp Nou, Calle Aristides Maillol, Barcelona</p></div>
               <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
             </div>
             <div class="card-action">
-              <a href="#">ver en mapa</a>
+              <a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row cardPartido">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="optionalHeader waves-effect waves-light avatar">
+              <img src="img/fondo.jpg" alt="" class="circle">
+              <span>
+                Antonio Mateo
+                <p><i class="material-icons left">access_time</i>10m</p>
+              </span>
+              <span class="cantJug">3/11<i class="material-icons right">person</i></span>
+            </div>
+            <div class="card-image waves-effect waves-light">
+              <img src="img/vicente.jpg">
+              <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
+            </div>
+            <div class="card-content">
+              <span class="card-title">Vicente Calderón</span>
+              <div><i class="material-icons left">location_on</i><p>Paseo de la Virgen del Puerto, 67, Madrid</p></div>
+              <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a>
             </div>
           </div>
         </div>
