@@ -5,14 +5,18 @@ function PossiBall() {
   this.checkSetup();    // Comprobamos que tenemos acceso a Firebase
 
   // elementos de la app con las que interactuar
-  this.signGoogle = document.getElementById("sesGoogle");
   this.salir = document.getElementById("salir");
   this.login = document.getElementById("crearUsu");
+  this.nomUsu = document.getElementById("buttonUsu");
+  this.perfilContenido = document.getElementById("perfil");
+  this.addSport = document.getElementById("btnAddSport");
 
   // eventos que desencadenan los elementos anteriores
-  if (this.signGoogle != null) { this.signGoogle.addEventListener('click', this.signInWithGoogle.bind(this)); }
   if (this.salir != null) { this.salir.addEventListener('click', this.salirApp.bind(this)); }
   if (this.login != null) { this.login.addEventListener('click', this.crearUsu.bind(this)); }
+  if (this.nomUsu != null) { this.nomUsu.addEventListener('click', this.nombreUsuario.bind(this)); }
+  if (this.perfilContenido != null) { this.perfilContenido.addEventListener('click', this.cargaPerfil.bind(this)); }
+  if (this.addSport != null) { this.addSport.addEventListener('click', this.nuevoDeporte.bind(this)); }
 
   // contructor de las funciones de Firebase
   this.initFirebase();
@@ -25,29 +29,6 @@ PossiBall.prototype.initFirebase = function (){
   this.storage = firebase.storage();      // Para acceder a las funciones del almacenamiento de los archivos multimedia
 }
 
-// Iniciar sesion con cuenta de Google
-PossiBall.prototype.signInWithGoogle = function () {
-  var provider = new firebase.auth.GoogleAuthProvider();
-  this.auth.signInWithPopup(provider).then(function (result) {
-    // Si existe el usuario con cuenta en google entra en la app
-    if (!result.user.isAnonymous) {
-      window.location.href = '/homeApp.html';
-
-    // sino existe se le notifica que no dispone de cuenta en google
-    } else {
-      console.log("Que no tienes cuenta mono.");
-    }
-  }).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-  });
-}
-
 // Funcion para salir de la aplicacion y se manda al index.html
 PossiBall.prototype.salirApp = function () {
   this.auth.signOut().then(function () {
@@ -57,63 +38,131 @@ PossiBall.prototype.salirApp = function () {
   });
 };
 
-// Funcion para comprobar si ya ha iniciado sesion
-PossiBall.prototype.estaRegistrado = function () {
-  if (user) {
-    console.log("hola");
-  }
-}
-
 // Crear una nueva cuenta para un usuario
 PossiBall.prototype.crearUsu = function () {
 
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
+  this.auth.signInWithEmailAndPassword(email, password).then(function () {
+    console.log('esta registrado');
+    console.log(firebase.Promise);
+  }).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
   // usuario sin sesion activada
-  if (!this.auth.currentUser) {
-    var aux = true;
+  if (!this.auth.currentUser) {console.log('sin sesion');
     // usuario no registrado
-    this.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+    this.auth.createUserWithEmailAndPassword(email, password).then(function () {
+      window.location.href = 'create.html';
+    }).catch(function(error) {
       // Handle Errors here.
-      aux = false;
+      var errorCode = error.code;
+      var errorMessage = error.message;
     });
 
-    console.log(aux);
+  // si el usuario ya tiene cuenda creada se le redigira a homeApp
+  }else{
+    window.location.href = 'homeApp.html';
   }
 };
 
-var cortina = document.getElementsByClassName("cortina");
+// Funcion para crear el objeto en la BBDD del usuario
+PossiBall.prototype.nombreUsuario = function () {
+  var nombre = document.getElementById("nombreUsu").value;
+  var uid = this.auth.currentUser.uid;
 
-// Funcion para actualizar los datos del usuario
-function actualizar() {
+  // se guarda su nombre
+  this.database.ref('usuarios/'+uid).set({
+    nombreUsuario: nombre
+  });
 
-}
+  window.location.href = 'homeApp.html';
+};
 
 // Funcion para cargar los datos de los perfiles de los usuarios
-function cargaPerfil() {
+PossiBall.prototype.cargaPerfil = function () {
   var user = firebase.auth().currentUser;
-  if (user!=null) {
-    console.log("Si estas registrado");
-  } else {
-    console.log("No hay usuario");
-  }
 
   // datos del usuario
-  var nombre, apellidos, edad, localidad, provincia, pais, email;
-  db.ref('/usuarios/'+user.uid).on('value', function (snapshot) {
-    console.log(snapshot.val().nombre);
-    nombre = snapshot.val().nombre;
-    apellidos = snapshot.val().apellidos;
-    edad = snapshot.val().edad;
-    localidad = snapshot.val().localidad;
-    provincia = snapshot.val().provincia;
-    pais = snapshot.val().pais;
-    email = snapshot.val().email;
+  this.database.ref('/usuarios/'+user.uid).on('value', function (snapshot) {
+    // cogemos los datos de la base de datos JSON
+    var nombre = snapshot.val().nombreUsuario;
+    var ciudad = snapshot.val().ciudad;
+    var provincia = snapshot.val().provincia;
+    var followers = snapshot.val().seguidores;
+    var follow = snapshot.val().siguiendo;
+    var deportes = snapshot.val().deportes;
+    var edad = snapshot.val().edad;
+    var pais = snapshot.val().pais;
+    var sexo = snapshot.val().sexo;
+    var email = user.email;
 
-    document.getElementById("perfilContent").innerHTML = "<div><p>"+nombre+"</p></div>";
+    // cargamos los datos en el perfil del usuario
+    document.getElementById("nom").innerHTML = nombre;
+    document.getElementById("situado").innerHTML = "<i class='material-icons'>location_on</i>"+ciudad+", "+provincia;
+    document.getElementById("followers").innerHTML = followers;
+    document.getElementById("follow").innerHTML = follow;
+    document.getElementById("edad").innerHTML = "<i class='material-icons'>cake</i>"+edad+"<br><span>Edad</span>";
+    document.getElementById("deportes").innerHTML = "<i class='material-icons'>fitness_center</i>"+deportes+"<br><span>Deportes</span>";
+    document.getElementById("name").innerHTML = "<i class='material-icons'>person</i>"+nombre+"<br><span>Nombre Usuario</span>";
+    document.getElementById("ubicacion").innerHTML = "<i class='material-icons'>location_on</i>"+ciudad+", "+provincia+", "+pais+"<br><span>Ubicación</span>";
+    document.getElementById("sexo").innerHTML = "<i class='material-icons'>wc</i>"+sexo+"<br><span>Género</span>";
+    document.getElementById("correo").innerHTML = "<i class='material-icons'>email</i>"+email+"<br><span>Correo</span>";
   });
-}
+};
+
+// funcion para agregar nuevos deportes para el usuario
+PossiBall.prototype.nuevoDeporte = function () {
+
+  // proceso para poder llamar a la funcion de actualizar
+  this.updateSport = document.getElementById("updateSport");
+  if (this.updateSport != null){ this.updateSport.addEventListener('click', this.updateDeportes.bind(this)); }
+
+  // damos titulo y mostramos el popup
+  document.getElementById("titlePopUp").innerHTML = 'Seleccionar Deportes';
+  document.getElementById("popUp").style.visibility = 'visible';
+  document.getElementById("membrana").style.visibility = 'visible';
+
+  // cargamos de la base de datos los deportes y los anyadimos al popUp
+  this.database.ref('/deportesApp/').on('value', function (snapshot) {
+    var deportes = snapshot.val();
+    deportes = deportes.split(',');
+    document.getElementById("deportesColeccion").innerHTML = ''; // antes de inyectarlos borramos los que hayan
+
+    for (var i = 0; i < deportes.length; i++) {
+      document.getElementById("deportesColeccion").innerHTML += "<li class='collection-item'><input type='checkbox' value='"+deportes[i]+"' class='checkSport' id='test"+i+"'/><label for='test"+i+"'>"+deportes[i]+"</label></li>";
+    }
+  });
+};
+
+// funcion para actualizar los deportes del usuario
+PossiBall.prototype.updateDeportes = function () {
+  var deportes = document.getElementsByClassName("checkSport");
+  var subir = '';
+
+  // recorremos todos los checbox y cogemos los que esten marcados
+  for (var i = 0; i < deportes.length; i++) {
+    if (deportes[i].checked == true) {
+      subir += deportes[i].value+', ';
+    }
+  }
+  // si no hay ninguno marcado no se hace nada, si hay al menos uno actualizamos la base de datos
+  if (subir != '') {
+    subir = subir.slice(0, -2); // para eliminar la coma final
+    this.database.ref('/usuarios/'+this.auth.currentUser.uid).update({
+      deportes: subir
+    }).then(function (){
+      cierraPop();
+    });
+  }
+};
+
+//***************************************************************** FUNCIONES GENERALES
+var cortina = document.getElementsByClassName("cortina");
 
 // Funcion para cambiar los icones entre las vistas
 function changeIcon(index) {
@@ -167,6 +216,35 @@ function tabActiva(index) {
     }
   }
 }
+function tabActiva2(index) {
+  var tabs = document.getElementsByName("tab");
+  var subTab = document.getElementById("subTab2");
+  for (var i = 0; i < tabs.length; i++) {
+    if (index == i) {
+      tabs[i].style.color = '#fff';
+      if (index == 0) {
+        subTab.style.left = '0'+'%';
+      } else if (index == 1) {
+        subTab.style.left = '33.33'+'%';
+      } else {
+        subTab.style.left = '66.66'+'%';
+      }
+    }else{
+      tabs[i].style.color = '#F1F8E9';
+    }
+  }
+}
+
+// Funcion para cambiar el boton flotante
+function cambioBtn(status) {
+  if (status == 1) {
+    document.getElementById("btnPrincipal").style.visibility = 'hidden';
+    document.getElementById("btnAddSport").style.visibility = 'visible';
+  }else if (status == 0) {
+    document.getElementById("btnPrincipal").style.visibility = 'visible';
+    document.getElementById("btnAddSport").style.visibility = 'hidden';
+  }
+}
 
 // Funcion para mostrar el menu lateral y ocultarlo
 var oculto = true;
@@ -184,6 +262,7 @@ function muestraMenu() {
 function ocultaMenu() {
   document.getElementById('slide-out').style.transform = "translateX(-105%)";
   oculto = true;
+  cortina[0].style.visibility = 'hidden';
 }
 
 // Funcion para desplegar el submenu y ocultarlo
@@ -210,8 +289,10 @@ function ocultaSubMenu() {
   drop = true;
 }
 
-function cliclado() {
-  console.log("lo estas cliclando");
+// funcion para cerrar el popUp
+function cierraPop() {
+  document.getElementById("popUp").style.visibility = 'hidden';
+  document.getElementById("membrana").style.visibility = 'hidden';
 }
 
 // Para comprobar que la app esta conectada a todas las funcionalidades de Firebase
@@ -233,6 +314,5 @@ PossiBall.prototype.checkSetup = function() {
 
 // Al cargar la pagina se crea el objeto para acceder a todas las funciones de la app
 window.onload = function() {
-  console.log("Cargada");
   window.possiBall = new PossiBall();
 };

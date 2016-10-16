@@ -1,15 +1,80 @@
 <ion-view ng-controller="ocultaMenuVista">
   <ion-header-bar id="barraPerfil" class="bar-stable">
     <div id="cabeza">
-      <a nav-direction="forward" nav-transition="android" href="#"><i id="iconMenu" class="material-icons">arrow_back</i></a>
+      <a nav-direction="forward" onclick="cambioBtn(0);" nav-transition="android" href="#"><i id="iconMenu" class="material-icons">arrow_back</i></a>
       <i id="iconNoti" class="material-icons">notifications</i>
       <i id="iconMore" class="material-icons">more_vert</i>
     </div>
   </ion-header-bar>
 
-  <ionic-content id="perfilContenido" onclick="ocultaMenu();">
-    <img onload="ocultaMenu();" class="responsive-img" src="img/fondo.jpg">
-    <p id="perfilContent" style="color:#000;"></p>
-    <button class="btn waves-effect waves-light" type="submit" onclick="cargaPerfil();" name="action">Cargar</button>
+  <!-- popup para cargar los contenidos -->
+  <div id="popUp">
+    <div>
+      <span id="titlePopUp"></span>
+      <ul class="collection" id="deportesColeccion"></ul>
+      <button type="button" class="waves-effect waves-teal btn-flat" id="updateSport" name="button">aceptar</button>
+    </div>
+  </div>
+  <div id="membrana" onclick="cierraPop();"></div>
+  <!-- fin del popup para cargar los contenidos -->
+
+  <ionic-content id="perfilContenido" onclick="ocultaMenu();" ng-controller="tabStyle2">
+    <div class="actionPerfil">
+      <a class="btn-floating waves-effect waves-light"><i class="material-icons">chat</i></a>
+      <img src="img/avatar.png" alt="">
+      <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
+      <span id="nom"></span>
+      <span id="situado"></span>
+    </div>
+    <div class="social">
+      <div>
+        <span id="followers"></span>
+        <p>Seguidores</p>
+      </div>
+      <div>
+        <span id="follow"></span>
+        <p>Siguiendo</p>
+      </div>
+    </div>
+    <div class="panelUsu">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="deportes();activa();">Deportes</button></li>
+          <li class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="partidos();activa();">Partidos</button></li>
+          <li class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="info();activa();">Info</button></li>
+          <div id="subTab2"></div>
+        </ul>
+      </div>
+    </div>
+    <ion-slide-box active-slide="currentIndex" on-slide-changed="slideChanged()">
+      <ion-slide>
+        <ul class="collection">
+          <li class="collection-item">Alvin</li>
+          <li class="collection-item">Alvin</li>
+          <li class="collection-item">Alvin</li>
+          <li class="collection-item">Alvin</li>
+        </ul>
+      </ion-slide>
+
+      <ion-slide>
+        <ul class="collection">
+          <li class="collection-item">Alvin</li>
+          <li class="collection-item">Alvin</li>
+          <li class="collection-item">Alvin</li>
+          <li class="collection-item">Alvin</li>
+        </ul>
+      </ion-slide>
+
+      <ion-slide>
+        <ul class="collection">
+          <li class="collection-item" id="name"></li>
+          <li class="collection-item" id="correo"></li>
+          <li class="collection-item" id="ubicacion"></li>
+          <li class="collection-item" id="edad"></li>
+          <li class="collection-item" id="deportes"></li>
+          <li class="collection-item" id="sexo"></li>
+        </ul>
+      </ion-slide>
+    </ion-slide-box>
   </ionic-content>
 </ion-view>

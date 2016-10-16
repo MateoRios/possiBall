@@ -69,6 +69,15 @@ app.controller('principal', function ($scope,$state, $ionicSlideBoxDelegate) {
   $scope.busqueda = function() {
     $ionicSlideBoxDelegate.slide(2);
   };
+  $scope.deportes = function() {
+    $ionicSlideBoxDelegate.slide(0);
+  }
+  $scope.partidos = function() {
+    $ionicSlideBoxDelegate.slide(1);
+  }
+  $scope.info = function () {
+    $ionicSlideBoxDelegate.slide(2);
+  }
 
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
@@ -85,6 +94,16 @@ app.controller('tabStyle', function ($scope, $ionicSlideBoxDelegate) {
     var index = $ionicSlideBoxDelegate.currentIndex();
     tabActiva(index);
     changeIcon(index);
+  }
+});
+app.controller('tabStyle2', function ($scope, $ionicSlideBoxDelegate) {
+  $scope.activa = function () {
+    var index = $ionicSlideBoxDelegate.currentIndex();
+    tabActiva2(index);
+  }
+  $scope.slideChanged = function () {
+    var index = $ionicSlideBoxDelegate.currentIndex();
+    tabActiva2(index);
   }
 });
 

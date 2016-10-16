@@ -27,7 +27,7 @@
             <a class="waves-effect" href="#!email"><span class="white-text email">mathewrios61@gmail.com</span></a>
           </div>
         </li>
-        <li><a class="waves-effect" ui-sref="perfil" nav-transition="android"><i class="material-icons">person</i>Perfil</a></li>
+        <li><a class="waves-effect" id="perfil" ui-sref="perfil" onclick="cambioBtn(1);" nav-transition="android"><i class="material-icons">person</i>Perfil</a></li>
         <li><a class="waves-effect" ui-sref="crearPista" nav-transition="android"><i class="material-icons">pin_drop</i>Crear Pista</a></li>
         <li><a class="waves-effect" ui-sref="calendario" nav-transition="android"><i class="material-icons">date_range</i>Calendario</a></li>
         <li><a class="waves-effect" ui-sref="listAmigos" nav-transition="android"><i class="material-icons">list</i>Lista Amigos</a></li>
@@ -40,15 +40,16 @@
       <div class="cortina" onclick="muestraMenu();"></div>
       <!-- fin del menu lateral -->
 
+      <!-- boton flotante -->
+      <a id="btnPrincipal" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+      <a id="btnAddSport" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">spa</i></a>
+
       <!-- menu con las opciones de filtrado -->
       <div id="menuFiltro">
         <p>Filtrar</p>
       </div>
       <div class="cortina" onclick="menuFilter()"></div>
       <!-- fin del menu para los fitros -->
-
-      <!-- boton flotante -->
-      <a id="btnPrincipal" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
 
       <!-- con esta etiqueta se manega la navegacion en la aplicacion -->
       <ion-nav-view>
