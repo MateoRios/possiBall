@@ -161,6 +161,19 @@ PossiBall.prototype.updateDeportes = function () {
   }
 };
 
+// funcion para actualizar los datos del perfil
+PossiBall.prototype.setPerfil = function () {
+  console.log('funca');
+};
+
+// funcion para comprobar los datos para editar el perfil
+function validateEdit() {
+  var nom = document.getElementById("nomEdit").value;
+  var nick = document.getElementById("nickEdit").value;
+  var nacimiento = document.getElementById("nacEdit").value;
+  console.log(nom+" "+nick+" "+nacimiento);
+}
+
 //***************************************************************** FUNCIONES GENERALES
 var cortina = document.getElementsByClassName("cortina");
 
@@ -265,7 +278,7 @@ function ocultaMenu() {
   cortina[0].style.visibility = 'hidden';
 }
 
-// Funcion para desplegar el submenu y ocultarlo
+// Funcion para desplegar los submenus y ocultarlos
 var drop = true;
 function dropMenu() {
   var submenu = document.getElementById("dropdown1");
@@ -287,6 +300,28 @@ function ocultaSubMenu() {
   submenu.style.opacity = '0';
   document.getElementById("bloque").style.display = "none";
   drop = true;
+}
+var drop2 = true;
+function dropMenu2() {
+  var submenu = document.getElementById("dropdown2");
+  if (drop2 == true) {
+    submenu.style.display = 'block';
+    submenu.style.opacity = '1';
+    document.getElementById("bloque2").style.display = "block";
+    drop2 = false;
+  }else if (drop == false) {
+    submenu.style.display = 'none';
+    submenu.style.opacity = '0';
+    document.getElementById("bloque2").style.display = "none";
+    drop2 = true;
+  }
+}
+function ocultaSubMenu2() {
+  var submenu = document.getElementById("dropdown2");
+  submenu.style.display = 'none';
+  submenu.style.opacity = '0';
+  document.getElementById("bloque2").style.display = "none";
+  drop2 = true;
 }
 
 // funcion para cerrar el popUp
