@@ -48,8 +48,9 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="locaEdit" type="text" class="validate" value="{{coords.latitude}} {{coords.longitude}}">
+              <input id="locaEdit" type="text" class="validate">
               <label for="locaEdit" class="active">Ubicación</label>
+              <button type="button" class="waves-effect waves-teal btn-flat" ng-click="localizame();" name="button">localizar</button>
             </div>
           </div>
         </form>

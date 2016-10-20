@@ -85,21 +85,19 @@ PossiBall.prototype.nombreUsuario = function () {
 
 // Funcion para cargar los datos de los perfiles de los usuarios
 PossiBall.prototype.cargaPerfil = function () {
-  var user = firebase.auth().currentUser;
 
   // datos del usuario
-  this.database.ref('/usuarios/'+user.uid).on('value', function (snapshot) {
+  this.database.ref('/usuarios/'+this.auth.currentUser.uid).on('value', function (snapshot) {
     // cogemos los datos de la base de datos JSON
     var nombre = snapshot.val().nombreUsuario;
     var ciudad = snapshot.val().ciudad;
     var provincia = snapshot.val().provincia;
     var followers = snapshot.val().seguidores;
     var follow = snapshot.val().siguiendo;
-    var deportes = snapshot.val().deportes;
     var edad = snapshot.val().edad;
     var pais = snapshot.val().pais;
     var sexo = snapshot.val().sexo;
-    var email = user.email;
+    var email = firebase.auth().currentUser.email;
 
     // cargamos los datos en el perfil del usuario
     document.getElementById("nom").innerHTML = nombre;
@@ -107,12 +105,25 @@ PossiBall.prototype.cargaPerfil = function () {
     document.getElementById("followers").innerHTML = followers;
     document.getElementById("follow").innerHTML = follow;
     document.getElementById("edad").innerHTML = "<i class='material-icons'>cake</i>"+edad+"<br><span>Edad</span>";
-    document.getElementById("deportes").innerHTML = "<i class='material-icons'>fitness_center</i>"+deportes+"<br><span>Deportes</span>";
     document.getElementById("name").innerHTML = "<i class='material-icons'>person</i>"+nombre+"<br><span>Nombre Usuario</span>";
     document.getElementById("ubicacion").innerHTML = "<i class='material-icons'>location_on</i>"+ciudad+", "+provincia+", "+pais+"<br><span>Ubicación</span>";
     document.getElementById("sexo").innerHTML = "<i class='material-icons'>wc</i>"+sexo+"<br><span>Género</span>";
     document.getElementById("correo").innerHTML = "<i class='material-icons'>email</i>"+email+"<br><span>Correo</span>";
   });
+
+  // deportes del usuario
+  this.database.ref('/usuarios/'+this.auth.currentUser.uid+'/deportes/').on('value', function (data) {
+    var deportes = data.val();
+    deportes = Object.keys(deportes); // cogemos las claves de los objetos que son los nombres de los deportes y los metemos en un arra
+    var aux = '';
+
+    // recorremos el nuevo array para mostrar los deportes en el perfil de usuario
+    for (var i = 0; i < deportes.length; i++) {
+      aux += deportes[i]+', ';
+    }
+    aux = aux.slice(0, -2);
+    document.getElementById("deportes").innerHTML = "<i class='material-icons'>fitness_center</i>"+aux+"<br><span>Deportes</span>";
+  })
 };
 
 // funcion para agregar nuevos deportes para el usuario
@@ -142,28 +153,40 @@ PossiBall.prototype.nuevoDeporte = function () {
 // funcion para actualizar los deportes del usuario
 PossiBall.prototype.updateDeportes = function () {
   var deportes = document.getElementsByClassName("checkSport");
-  var subir = '';
+  var subir = []; // array con los nuevos deportes
 
   // recorremos todos los checbox y cogemos los que esten marcados
   for (var i = 0; i < deportes.length; i++) {
     if (deportes[i].checked == true) {
-      subir += deportes[i].value+', ';
+      subir.push(deportes[i].value); // anyadimos los deportes seleccionados en el array
+      subir.sort(); // ordenamos el array
     }
   }
+
   // si no hay ninguno marcado no se hace nada, si hay al menos uno actualizamos la base de datos
-  if (subir != '') {
-    subir = subir.slice(0, -2); // para eliminar la coma final
-    this.database.ref('/usuarios/'+this.auth.currentUser.uid).update({
-      deportes: subir
-    }).then(function (){
-      cierraPop();
-    });
+  if (subir.length > 0) {
+    for (var i = 0; i < subir.length; i++) {
+      // creamos un subarbol dentro de deportes para cada deportes y poder agregar los datos de cada deporte dentro del usuario
+      this.database.ref('/usuarios/'+this.auth.currentUser.uid+'/deportes/'+String(subir[i])).set({
+        estado: "activo"
+      }).then(function (){
+        cierraPop(); // cerramos el popUp con los deportes
+      });
+    }
   }
 };
 
 // funcion para actualizar los datos del perfil
-PossiBall.prototype.setPerfil = function () {
-  console.log('funca');
+PossiBall.prototype.setPerfil = function (nom, nick, edad, ciudad, provincia, pais) {
+  console.log(nom+" "+nick+" "+edad+" "+ciudad+" "+provincia+" "+pais);
+  firebase.database().ref('/usuarios/'+firebase.auth().currentUser.uid).update({
+    nombreUsuario: nom,
+    apodo: nick,
+    edad: edad,
+    ciudad: ciudad,
+    provincia: provincia,
+    pais: pais
+  });
 };
 
 // funcion para comprobar los datos para editar el perfil
@@ -171,7 +194,16 @@ function validateEdit() {
   var nom = document.getElementById("nomEdit").value;
   var nick = document.getElementById("nickEdit").value;
   var nacimiento = document.getElementById("nacEdit").value;
-  console.log(nom+" "+nick+" "+nacimiento);
+  var ubicacion = document.getElementById("locaEdit").value;
+  ubicacion = ubicacion.split(',');
+  var anyoActual = new Date().getFullYear();
+
+  // calculamos la edad
+  nacimiento = nacimiento.split('-');
+  nacimiento = anyoActual - (nacimiento[0]);
+
+  // llamamos a la funcion para actualizar la BBDD
+  PossiBall.prototype.setPerfil(nom, nick, nacimiento, ubicacion[0], ubicacion[1].trim(), ubicacion[2].trim());
 }
 
 //***************************************************************** FUNCIONES GENERALES

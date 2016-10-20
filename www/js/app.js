@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 (function () {
-  var app = angular.module('starter', ['ionic','ngCordova']);
+  var app = angular.module('starter', ['ionic', 'ngCordova']);
 
   // configuracion de enrrutamiento de las vistas
   app.config(function($stateProvider, $urlRouterProvider){
@@ -66,7 +66,7 @@
   });
 
   // controlador para cambiar de vistas con las pestañas del submenu horizontal
-  app.controller('principal', function ($scope,$state, $ionicSlideBoxDelegate) {
+  app.controller('principal', function ($scope, $state, $ionicSlideBoxDelegate) {
     $scope.eventos = function() {
       $ionicSlideBoxDelegate.slide(0);
     };
@@ -121,17 +121,29 @@
     });
   });
 
-  // controlador para lcoalizar al usuario
-  app.controller('geolocation', function ($scope, $cordovaGeolocation, $ionicPlatform) {
-    $ionicPlatform.ready(function () {
-      var posOptions = {timeout: 10000, enableHighAccuracy: true};
+  // controlador para localizar al usuario
+  app.controller('geolocation', function ($scope, $cordovaGeolocation) {
+    $scope.ubicacion;
+    $scope.localizame = function () {
+      var posOptions = {timeout: 10000, enableHighAccuracy: true}; // ngcordova localiza las coordenadas del usuario
+      var geocoder = new google.maps.Geocoder; // objeto de google api para traducir las coordenadas
       $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-        $scope.coords = position.coords;
+        $scope.coords = position.coords; // variable con las coordenadas
+        var location = {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)};
+
+        // funcion del objeto de google maps para convertir las coordenadas en la direcion fisica de la ubicacion del usuario
+        geocoder.geocode({'location': location}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            document.getElementById("locaEdit").value = results[1].formatted_address;
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
       }, function(err) {
         // error
         console.log('getCurrentPosition error: '+angular.toJson(err));
       });
-    });
+    }
   });
 
   app.run(function($ionicPlatform) {
