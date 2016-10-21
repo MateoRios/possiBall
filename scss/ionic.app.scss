@@ -32,6 +32,13 @@ $fondo: #fbfdf8;
 @import "www/lib/ionic/scss/ionic";
 
 // Reglas generales
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]){
+  border-bottom: 1px solid $accentColor !important;
+  box-shadow: 0 1px 0 0 $accentColor !important;
+  +label{
+    color: $accentColor !important;
+  }
+}
 html{
   height: 100%;
   overflow-y: auto;
@@ -768,6 +775,32 @@ div.cardPartido{
         border-radius: 50%;
         background-color: rgba(51, 51, 51, 0.13);
       }
+      a.mini-floating{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: $accentColor;
+        border-radius: 50%;
+        margin-top: 25px;
+        opacity: 0;
+        transition: all 0.7s ease;
+        transform: translateX(+105%);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        i{
+          width: auto;
+          height: auto;
+          padding: 10px;
+          border-radius: 0;
+          background: none;
+          font-size: 20px;
+        }
+        &:nth-child(1){
+          left: 10%;
+        }
+        &:nth-child(2){
+          left: 25%;
+        }
+      }
     }
     img{
       width: 90px;
@@ -776,11 +809,14 @@ div.cardPartido{
     }
     span{
       display: block;
-      width: 100%;
+      width: 40%;
+      margin: auto;
       text-align: center;
       font-size: 16px;
       color: #fff;
-      padding-top: 16px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      border-radius: 2px;
       i{
         font-size: 20px;
         margin-right: 6px;
@@ -794,6 +830,14 @@ div.cardPartido{
       padding-top: 12px;
       div.input-field{
         margin-top: 0;
+        label{
+          font-size: 0.8rem;
+          transform: translateY(-140%);
+        }
+        button.btn{
+          background-color: $accentColor;
+          padding: 0 10px;
+        }
       }
       #nacEdit+label{
         top: 0

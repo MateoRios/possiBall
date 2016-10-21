@@ -356,6 +356,26 @@ function ocultaSubMenu2() {
   drop2 = true;
 }
 
+// funcion para mostrar el submenu para subir una foto de perfil
+var fotoOP = false;
+function opcionesFoto() {
+  var op = document.getElementsByClassName("mini-floating");
+
+  if (fotoOP == false) {
+    for (var i = 0; i < op.length; i++) {
+      op[i].style.opacity = '1';
+      op[i].style.transform = 'translateX(0%)';
+    }
+    fotoOP = true;
+  } else {
+    for (var i = 0; i < op.length; i++) {
+      op[i].style.opacity = '0';
+      op[i].style.transform = 'translateX(+105%)';
+    }
+    fotoOP = false;
+  }
+}
+
 // funcion para cerrar el popUp
 function cierraPop() {
   document.getElementById("popUp").style.visibility = 'hidden';

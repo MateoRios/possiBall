@@ -1,9 +1,9 @@
 <ion-view ng-controller="ocultaMenuVista">
   <ion-header-bar id="barraPerfil" class="bar-stable">
     <div id="cabeza" class="edit">
-      <a onclick="cambioBtn(0);" ui-sref="perfil" nav-transition="android"><i id="iconMenu" class="material-icons">close</i></a>
+      <a onclick="cambioBtn(0);" ui-sref="perfil" nav-transition="android"><i id="iconMenu" class="waves-effect waves-light material-icons">close</i></a>
       <h2>Editar Perfil</h2>
-      <i id="iconMore" class="material-icons" onclick="validateEdit();">check</i>
+      <i id="iconMore" class="waves-effect waves-light material-icons" onclick="validateEdit();">check</i>
     </div>
 
   <!-- popup para cargar los contenidos -->
@@ -18,12 +18,14 @@
   <!-- fin del popup para cargar los contenidos -->
 
   <ionic-content id="perfilEditar" ng-controller="geolocation">
-    <div class="actionPerfil">
+    <div class="actionPerfil" ng-controller="PictureCtrl">
       <div id="avatarEdit">
-        <i class="material-icons">photo_camera</i>
+        <a class="mini-floating waves-effect waves-light"><i class="material-icons">file_upload</i></a>
+        <a class="mini-floating waves-effect waves-light" ng-click="tomaFoto()"><i class="material-icons">linked_camera</i></a>
+        <i class="waves-effect waves-teal material-icons" onclick="opcionesFoto();">photo_camera</i>
       </div>
-      <img src="img/avatar.png" alt="">
-      <span>
+      <img id="miAvatar" src="" alt="">
+      <span class="waves-effect waves-light">
         <i class="material-icons">photo_camera</i> Cambiar fondo
       </span>
     </div>
@@ -50,7 +52,7 @@
             <div class="input-field col s12">
               <input id="locaEdit" type="text" class="validate">
               <label for="locaEdit" class="active">Ubicación</label>
-              <button type="button" class="waves-effect waves-teal btn-flat" ng-click="localizame();" name="button">localizar</button>
+              <button type="button" class="waves-effect waves-ligth btn" ng-click="localizame();" name="button">localizar</button>
             </div>
           </div>
         </form>

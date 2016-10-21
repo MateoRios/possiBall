@@ -121,8 +121,35 @@
     });
   });
 
+  // controlador para tomar fotos con la camara
+  app.controller('PictureCtrl', function($scope, $cordovaCamera) {
+
+    $scope.tomaFoto = function () {
+      var options = {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false,
+  	  correctOrientation:true
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        var image = document.getElementById('miAvatar');
+        image.src = "data:image/jpeg;base64," + imageData;
+      }, function(err) {
+        // error
+      });
+
+    }
+  });
+
   // controlador para localizar al usuario
-  app.controller('geolocation', function ($scope, $cordovaGeolocation) {
+  app.controller('geolocation', function ($scope, $cordovaGeolocation, $cordovaToast) {
     $scope.ubicacion;
     $scope.localizame = function () {
       var posOptions = {timeout: 10000, enableHighAccuracy: true}; // ngcordova localiza las coordenadas del usuario
@@ -142,6 +169,7 @@
       }, function(err) {
         // error
         console.log('getCurrentPosition error: '+angular.toJson(err));
+        $cordovaToast.show('Tienes que activar el GPS','long','center');
       });
     }
   });
@@ -159,7 +187,7 @@
         cordova.plugins.Keyboard.disableScroll(true);
       }
       if(window.StatusBar) {
-        StatusBar.styleHex('#689F38');
+        StatusBar.backgroundColorByHexString('#689F38');
       }
     });
   });
