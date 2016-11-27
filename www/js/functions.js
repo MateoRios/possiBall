@@ -10,6 +10,8 @@ function PossiBall() {
   this.nomUsu = document.getElementById("buttonUsu");
   this.perfilContenido = document.getElementById("perfil");
   this.addSport = document.getElementById("btnAddSport");
+  this.grupos = document.getElementById("grupos");
+  this.amigos = document.getElementById("amigos");
 
   // eventos que desencadenan los elementos anteriores
   if (this.salir != null) { this.salir.addEventListener('click', this.salirApp.bind(this)); }
@@ -17,6 +19,8 @@ function PossiBall() {
   if (this.nomUsu != null) { this.nomUsu.addEventListener('click', this.nombreUsuario.bind(this)); }
   if (this.perfilContenido != null) { this.perfilContenido.addEventListener('click', this.cargaPerfil.bind(this)); }
   if (this.addSport != null) { this.addSport.addEventListener('click', this.nuevoDeporte.bind(this)); }
+  if (this.grupos != null) { this.grupos.addEventListener('click', this.cargaGrupos.bind(this)); }
+  if (this.amigos != null) {this.amigos.addEventListener('click', this.cargaLista.bind(this)); }
 
   // contructor de las funciones de Firebase
   this.initFirebase();
@@ -32,7 +36,7 @@ PossiBall.prototype.initFirebase = function (){
 // Funcion para salir de la aplicacion y se manda al index.html
 PossiBall.prototype.salirApp = function () {
   this.auth.signOut().then(function () {
-    window.location.href = '../index.html';
+    window.location.href = '../../../index.html';
   }).catch(function (error) {
     console.log(error);
   });
@@ -46,7 +50,7 @@ PossiBall.prototype.crearUsu = function () {
 
   this.auth.signInWithEmailAndPassword(email, password).then(function () {
     console.log('esta registrado');
-    console.log(firebase.Promise);
+    window.location.href = 'homeApp.html';
   }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -70,7 +74,7 @@ PossiBall.prototype.crearUsu = function () {
   }
 };
 
-// Funcion para crear el objeto en la BBDD del usuario
+// Funcion para crear el objeto en la BBDD del usuario en el proceso de login inicial
 PossiBall.prototype.nombreUsuario = function () {
   var nombre = document.getElementById("nombreUsu").value;
   var uid = this.auth.currentUser.uid;
@@ -126,6 +130,35 @@ PossiBall.prototype.cargaPerfil = function () {
   })
 };
 
+// funcion para cargar los grupos del usuario
+PossiBall.prototype.cargaGrupos = function () {
+
+  // cargamos los grupos desde la base de datos
+  this.database.ref('/usuarios/'+this.auth.currentUser.uid+'/grupos/').on('value', function (snapshot) {
+    var grupos =  snapshot.val();
+
+    // sino hay grupos mostramos el mensaje de que no hay y el boton para anyadir su primer grupo
+    if (grupos == "") {
+      console.log('no hay grupos');
+      document.getElementById("sinGrupos").style.display = 'block';
+    }
+  });
+};
+
+// funcion para cagar las listas con los amigos
+PossiBall.prototype.cargaLista = function () {
+
+  // cargamos las listas de los amigos
+  this.database.ref('/usuarios/'+this.auth.currentUser.uid+'/amigos/').on('value', function (snapshot) {
+    var listas = snapshot.val();
+
+    // sino hay listas mostramos el mensaje de que no hay y el boton para crear su primera lista con amigos
+    if (listas == "") {
+      console.log('no hay listas');
+    }
+  });
+};
+
 // funcion para agregar nuevos deportes para el usuario
 PossiBall.prototype.nuevoDeporte = function () {
 
@@ -178,7 +211,6 @@ PossiBall.prototype.updateDeportes = function () {
 
 // funcion para actualizar los datos del perfil
 PossiBall.prototype.setPerfil = function (nom, nick, edad, ciudad, provincia, pais) {
-  console.log(nom+" "+nick+" "+edad+" "+ciudad+" "+provincia+" "+pais);
   firebase.database().ref('/usuarios/'+firebase.auth().currentUser.uid).update({
     nombreUsuario: nom,
     apodo: nick,
@@ -198,12 +230,31 @@ function validateEdit() {
   ubicacion = ubicacion.split(',');
   var anyoActual = new Date().getFullYear();
 
-  // calculamos la edad
-  nacimiento = nacimiento.split('-');
-  nacimiento = anyoActual - (nacimiento[0]);
+  // cogemos los datos de la BBDD para completar los campos que este vacios
+  firebase.database().ref('/usuarios/'+firebase.auth().currentUser.uid).once('value', function (snapshot) {
+    var nombre = snapshot.val().nombreUsuario;
+    var apodo = snapshot.val().apodo;
+    var ciudad = snapshot.val().ciudad;
+    var provincia = snapshot.val().provincia;
+    var fecha = snapshot.val().fechaNacimiento;
+    var pais = snapshot.val().pais;
 
-  // llamamos a la funcion para actualizar la BBDD
-  PossiBall.prototype.setPerfil(nom, nick, nacimiento, ubicacion[0], ubicacion[1].trim(), ubicacion[2].trim());
+    // comprobamos los campos vacios y los rellenamos con los datos de la BBDD
+    if (nom == '') { nom = nombre; }
+    if (nick == '') { nick = apodo; }
+    if (nacimiento == '') { nacimiento = fecha; nacimiento = nacimiento.split('-'); nacimiento.reverse(); } else { nacimiento = nacimiento.split('-'); }
+    if (ubicacion == '') {
+      ubicacion.push(ciudad);
+      ubicacion.push(provincia);
+      ubicacion.push(pais);
+      ubicacion.shift();
+     }
+    // calculamos la edad
+    nacimiento = anyoActual - (nacimiento[0]);
+
+    // llamamos a la funcion para actualizar la BBDD
+    PossiBall.prototype.setPerfil(nom, nick, nacimiento, ubicacion[0], ubicacion[1].trim(), ubicacion[2].trim());
+  });
 }
 
 //***************************************************************** FUNCIONES GENERALES
