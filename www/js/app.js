@@ -121,6 +121,13 @@
     });
   });
 
+  // controlador para volver a la vista anterior
+  app.controller('vueltAtras', function ($scope, $ionicHistory) {
+    $scope.back = function () {
+      $ionicHistory.goBack();
+    }
+  });
+
   // controlador para tomar fotos con la camara
   app.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
@@ -135,7 +142,7 @@
         targetHeight: 100,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: false,
-  	  correctOrientation:true
+  	    correctOrientation:true
       };
 
       $cordovaCamera.getPicture(options).then(function(imageData) {

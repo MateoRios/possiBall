@@ -245,7 +245,8 @@ div#toast-container{
   display: block;
   float: left;
   z-index: 50;
-  position: relative;
+  position: fixed;
+  transition: top 0.3s ease;
   .title{
     color: #fff;
   }
@@ -264,6 +265,35 @@ div#toast-container{
       right: 102px;
       padding: 12px;
       border-radius: 50%;
+    }
+    #boxSearch{
+      background: $fondo;
+      color: $secondaryText;
+      position: absolute;
+      width: 0%;
+      top: 0;
+      height: 50px;
+      z-index: 0;
+      margin-left: 60%;
+      border-radius: 50%;
+      padding-top: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+      input{
+        margin: 0;
+        border: 0;
+        padding-left: 48px;
+        &:focus{
+          border: 0 !important;
+          box-shadow: none !important;
+        }
+      }
+      i{
+        position: absolute;
+        color: $accentColor;
+        z-index: 905;
+        padding: 8px;
+      }
     }
     #iconNoti{
       font-size: 24px;
@@ -323,6 +353,9 @@ div#toast-container{
       }
     }
   }
+}
+.bar-stable.bar.bar-header.fija{
+  top: -64px;
 }
 .has-header{
   z-index: -1;
@@ -384,6 +417,7 @@ a.btn-floating{
 // Contenedores del contenido
 div.slider{
   height: 100%;
+  padding-top: 110px;
 }
 .view-container{
   z-index: -5;
@@ -587,6 +621,7 @@ div.cardPartido{
   background: none;
   box-shadow: none;
   padding-top: 0;
+  position: relative;
   #cabeza{
     min-height: 140px;
     background-image: url('../img/fondo2.jpg');
@@ -835,14 +870,14 @@ div.cardPartido{
 }
 
 /* pagina para anyadir grupos */
-#sinGrupos{
+#sinGrupos, #sinListas{
   display: none;
   width: 100%;
   min-height: 250px;
   color: $secondaryText;
   text-align: center;
   font-size: 1.5rem;
-  padding-top: 7rem;
+  padding-top: 12rem;
   i{
     color: $secondaryText;
     font-size: 5rem;

@@ -9999,7 +9999,8 @@ div#toast-container {
   display: block;
   float: left;
   z-index: 50;
-  position: relative; }
+  position: fixed;
+  transition: top 0.3s ease; }
   .bar.bar-stable .title {
     color: #fff; }
   .bar.bar-stable #cabeza {
@@ -10016,6 +10017,31 @@ div#toast-container {
       right: 102px;
       padding: 12px;
       border-radius: 50%; }
+    .bar.bar-stable #cabeza #boxSearch {
+      background: #fbfdf8;
+      color: #757575;
+      position: absolute;
+      width: 0%;
+      top: 0;
+      height: 50px;
+      z-index: 0;
+      margin-left: 60%;
+      border-radius: 50%;
+      padding-top: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease; }
+      .bar.bar-stable #cabeza #boxSearch input {
+        margin: 0;
+        border: 0;
+        padding-left: 48px; }
+        .bar.bar-stable #cabeza #boxSearch input:focus {
+          border: 0 !important;
+          box-shadow: none !important; }
+      .bar.bar-stable #cabeza #boxSearch i {
+        position: absolute;
+        color: #8BC34A;
+        z-index: 905;
+        padding: 8px; }
     .bar.bar-stable #cabeza #iconNoti {
       font-size: 24px;
       position: absolute;
@@ -10060,6 +10086,9 @@ div#toast-container {
         height: 100%; }
       .bar.bar-stable #subCabeza div ul li:first-child button {
         color: #fff; }
+
+.bar-stable.bar.bar-header.fija {
+  top: -64px; }
 
 .has-header {
   z-index: -1;
@@ -10115,7 +10144,8 @@ a.btn-floating {
     background-color: #8BC34A; }
 
 div.slider {
-  height: 100%; }
+  height: 100%;
+  padding-top: 110px; }
 
 .view-container {
   z-index: -5;
@@ -10279,7 +10309,8 @@ div.cardPartido {
 #barraPerfil {
   background: none;
   box-shadow: none;
-  padding-top: 0; }
+  padding-top: 0;
+  position: relative; }
   #barraPerfil #cabeza {
     min-height: 140px;
     background-image: url("../img/fondo2.jpg");
@@ -10482,18 +10513,18 @@ div.cardPartido {
       top: 0; }
 
 /* pagina para anyadir grupos */
-#sinGrupos {
+#sinGrupos, #sinListas {
   display: none;
   width: 100%;
   min-height: 250px;
   color: #757575;
   text-align: center;
   font-size: 1.5rem;
-  padding-top: 7rem; }
-  #sinGrupos i {
+  padding-top: 12rem; }
+  #sinGrupos i, #sinListas i {
     color: #757575;
     font-size: 5rem; }
-  #sinGrupos button {
+  #sinGrupos button, #sinListas button {
     background-color: #8BC34A;
     font-size: 1.2rem;
     margin-top: 5%; }

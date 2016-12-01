@@ -14,7 +14,7 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
   </head>
-  <body ng-app="starter" ng-controller="principal">
+  <body ng-app="starter" ng-controller="principal" onscroll="fijaNav();">
     <ion-pane>
 
       <!-- menu principal lateral oculto -->
@@ -41,7 +41,7 @@
       <!-- fin del menu lateral -->
 
       <!-- boton flotante -->
-      <a id="btnPrincipal" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+      <a id="btnPrincipal" class="btn-floating btn-large waves-effect waves-light" onclick="crearEstructura();"><i class="material-icons">add</i></a>
       <a id="btnAddSport" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">spa</i></a>
 
       <!-- menu con las opciones de filtrado -->
@@ -83,6 +83,7 @@
       firebase.initializeApp(config);
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC2U--dxSA10iTxiLxUCJ2WBaChkg5vEE"></script>
+    <script src="js/database.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/app.js"></script>
   </body>

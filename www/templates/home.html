@@ -1,10 +1,14 @@
 <ion-view ng-controller="tabStyle">
   <!-- cabecera de la apicacion con las vistas y submenu -->
-  <ion-header-bar class="bar-stable">
+  <ion-header-bar id="headerIon" class="bar-stable">
     <div id="cabeza">
       <i id="iconMenu" class="waves-effect waves-light material-icons" onclick="muestraMenu();">menu</i>
       <h1 class="title">PossiBall</h1>
-      <i id="iconLupa" class="waves-effect waves-light material-icons">search</i>
+      <i id="iconLupa" class="waves-effect waves-light material-icons" onclick="abreBuscador();">search</i>
+      <form action="post" id="boxSearch">
+        <i class="waves-effect waves-light material-icons" onclick="cierraBuscador();">arrow_back</i>
+        <input type="text" name="inputBuscar" placeholder="Buscar...">
+      </form>
       <i id="iconNoti" class="waves-effect waves-light material-icons" onclick="menuFilter();">notifications</i>
       <i id="iconMore" class="waves-effect waves-light material-icons" onclick="dropMenu();">more_vert</i>
       <!-- Submenu desplegable -->
@@ -56,7 +60,7 @@
             </div>
             <div class="card-content">
               <span class="card-title">Santiago Bernabeu</span>
-              <div><i class="material-icons left">location_on</i><p>Estadio Santiago Bernabéu, Avenida de Concha Espina, Madrid</p></div>
+              <div><i class="material-icons left">location_on</i><p>Estadio Santiago Bernabéu, Avenida de Concha España, Madrid</p></div>
               <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
             </div>
             <div class="card-action">
