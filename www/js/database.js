@@ -48,6 +48,8 @@ PossiBall.prototype.crearUsu = function () {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
+  //TODO: - Comprobar que los datos introducidos son correctos
+
   this.auth.signInWithEmailAndPassword(email, password).then(function () {
     console.log('esta registrado');
     window.location.href = 'homeApp.html';
@@ -130,6 +132,21 @@ PossiBall.prototype.cargaPerfil = function () {
   })
 };
 
+// Funcion para cargar los ultimos partidos
+function ultimosPartidos() {
+
+  // cargamos los ultimos partidos registrados en la BBDD
+  firebase.database().ref('/partidos/').on('value', function (snapshot) {
+    for (var partido in snapshot.val()) {
+      firebase.database().ref('/partidos/'+partido).on('value', function (data) {
+        console.log(Object.values(data.val()));
+        var matches = Object.values(data.val());
+        document.getElementById("lastPartidos").innerHTML += '<div class="row cardPartido"><div class="col s12 m7"><div class="card"><div class="optionalHeader waves-effect waves-light avatar"><img src="img/fondo.jpg" alt="" class="circle"><span>'+matches[0]+'<p><i class="material-icons left">access_time</i>10m</p></span><span class="cantJug">'+matches[1]+'/'+matches[3]+'<i class="material-icons right">person</i></span></div><div class="card-image waves-effect waves-light"><img src="img/santiago.jpg"><a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a></div><div class="card-content"><span class="card-title">'+matches[5]+'</span><div><i class="material-icons left">location_on</i><p>'+matches[4]+'</p></div><div class="modalidad"><i class="material-icons left">group_work</i><p>'+matches[2]+'</p></div></div><div class="card-action"><a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a></div></div></div></div>';
+      });
+    }
+  });
+}
+
 // funcion para cargar los grupos del usuario
 PossiBall.prototype.cargaGrupos = function () {
 
@@ -141,9 +158,6 @@ PossiBall.prototype.cargaGrupos = function () {
     if (grupos == "") {
       document.getElementById("sinGrupos").style.display = 'block';
     }
-  });
-  this.database.ref('/partidos/').on('value', function (data) {
-    console.log(Object.size(data.val()));
   });
 };
 
@@ -170,7 +184,7 @@ PossiBall.prototype.nuevoDeporte = function () {
 
   // damos titulo y mostramos el popup
   document.getElementById("titlePopUp").innerHTML = 'Seleccionar Deportes';
-  document.getElementById("popUp").style.visibility = 'visible';
+  document.getElementById("popUp").style.transform = 'translateY(0)';
   document.getElementById("membrana").style.visibility = 'visible';
 
   // cargamos de la base de datos los deportes y los anyadimos al popUp

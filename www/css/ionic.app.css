@@ -9852,7 +9852,12 @@ div#toast-container {
 #index {
   text-align: center;
   color: #fff;
-  background-color: #8BC34A; }
+  background-image: url("../img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
+  #index div.scroll {
+    background-color: rgba(139, 195, 74, 0.51);
+    height: 100%; }
   #index #home {
     width: 100%;
     height: 100%;
@@ -10271,9 +10276,9 @@ div.cardPartido {
   display: block;
   position: fixed;
   z-index: 1000;
-  visibility: hidden;
   margin-top: 10rem;
-  width: 100%; }
+  width: 100%;
+  transform: translateY(-270%); }
   #popUp div {
     display: table;
     margin: auto;
@@ -10436,6 +10441,8 @@ div.cardPartido {
       #perfilContenido div.slider ul.collection li span {
         color: #757575;
         font-size: 13px; }
+  #perfilContenido div.slider {
+    padding-top: 0; }
 
 #perfilEditar {
   position: fixed;

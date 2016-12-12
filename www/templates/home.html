@@ -21,7 +21,7 @@
       <div class="col s12">
         <ul class="tabs">
           <li class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="eventos();activa();">Inicio</button></li>
-          <li class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="partidos();activa();">Partidos</button></li>
+          <li onclick="ultimosPartidos();" class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="partidos();activa();">Partidos</button></li>
           <li class="waves-effect waves-light tab col s3"><button type="button" name="tab" ng-click="busqueda();activa();">Buscar</button></li>
           <div id="subTab"></div>
         </ul>
@@ -42,85 +42,8 @@
       </ul>
     </ion-slide>
 
-    <ion-slide>
-      <div class="row cardPartido">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="optionalHeader waves-effect waves-light avatar">
-              <img src="img/fondo.jpg" alt="" class="circle">
-              <span>
-                Antonio Mateo
-                <p><i class="material-icons left">access_time</i>10m</p>
-              </span>
-              <span class="cantJug">3/11<i class="material-icons right">person</i></span>
-            </div>
-            <div class="card-image waves-effect waves-light">
-              <img src="img/santiago.jpg">
-              <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
-            </div>
-            <div class="card-content">
-              <span class="card-title">Santiago Bernabeu</span>
-              <div><i class="material-icons left">location_on</i><p>Estadio Santiago Bernabéu, Avenida de Concha España, Madrid</p></div>
-              <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
-            </div>
-            <div class="card-action">
-              <a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row cardPartido">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="optionalHeader waves-effect waves-light avatar">
-              <img src="img/fondo.jpg" alt="" class="circle">
-              <span>
-                Antonio Mateo
-                <p><i class="material-icons left">access_time</i>10m</p>
-              </span>
-              <span class="cantJug">3/11<i class="material-icons right">person</i></span>
-            </div>
-            <div class="card-image waves-effect waves-light">
-              <img src="img/campnou.jpeg">
-              <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
-            </div>
-            <div class="card-content">
-              <span class="card-title">Camp Nou</span>
-              <div><i class="material-icons left">location_on</i><p>Camp Nou, Calle Aristides Maillol, Barcelona</p></div>
-              <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
-            </div>
-            <div class="card-action">
-              <a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row cardPartido">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="optionalHeader waves-effect waves-light avatar">
-              <img src="img/fondo.jpg" alt="" class="circle">
-              <span>
-                Antonio Mateo
-                <p><i class="material-icons left">access_time</i>10m</p>
-              </span>
-              <span class="cantJug">3/11<i class="material-icons right">person</i></span>
-            </div>
-            <div class="card-image waves-effect waves-light">
-              <img src="img/vicente.jpg">
-              <a class="btn-floating waves-effect waves-light"><i class="material-icons">person_add</i></a>
-            </div>
-            <div class="card-content">
-              <span class="card-title">Vicente Calderón</span>
-              <div><i class="material-icons left">location_on</i><p>Paseo de la Virgen del Puerto, 67, Madrid</p></div>
-              <div class="modalidad"><i class="material-icons left">group_work</i><p>Fútbol 11</p></div>
-            </div>
-            <div class="card-action">
-              <a class="waves-effect waves-teal btn-flat" href="#">ver en mapa</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- contenedor con los ultimos partidos creados -->
+    <ion-slide id="lastPartidos">
     </ion-slide>
 
     <ion-slide>

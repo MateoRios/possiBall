@@ -198,6 +198,6 @@ function opcionesFoto() {
 
 // funcion para cerrar el popUp
 function cierraPop() {
-  document.getElementById("popUp").style.visibility = 'hidden';
+  document.getElementById("popUp").style.transform = 'translateY(-270%)';
   document.getElementById("membrana").style.visibility = 'hidden';
 }
